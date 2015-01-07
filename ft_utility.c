@@ -6,11 +6,26 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/06 13:05:31 by nowl              #+#    #+#             */
-/*   Updated: 2015/01/07 13:39:51 by mgras            ###   ########.fr       */
+/*   Updated: 2015/01/07 15:59:03 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+char	*ft_strclip(char *path, char *name, char *new_dirs)
+{
+	int		i;
+	int		s;
+
+	i = 0;
+	s = 0;
+	while (path[i])
+		new_dirs[s++] = path[i++];
+	i = 0;
+	while (name[i])
+		new_dirs[s++] = name[i++];
+	return (new_dirs);
+}
 
 size_t	ft_strlen(const char *s)
 {

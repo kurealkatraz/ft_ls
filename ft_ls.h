@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/06 11:58:16 by nowl              #+#    #+#             */
-/*   Updated: 2015/01/07 13:40:26 by mgras            ###   ########.fr       */
+/*   Updated: 2015/01/07 16:08:30 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,27 @@ void	ft_op_error(int index, char err);
 t_op	*ft_get_options(char **argv, int argc, t_op *ops);
 t_dirs	*ft_get_dirs(char **argv, int argc, t_dirs *dirs);
 
+//-R Init
+void	ft_mecha_init(int argc, char **argv, t_op *ops, t_dirs *dirs);
+
+//-R Mecha
+void	ft_get_recursive(t_dirs *dirs);
+
 //OP MACROS
 t_op	*ft_get_options(char **argv, int argc, t_op *ops);
 t_op	*ft_init_ops(t_op *ops);
 t_op	*ft_check_ops(char c, t_op *ops);
+t_dirs	*ft_new_napa_next(t_dirs *dirs, char *name);
 
 //DIRS MACROS
 t_dirs	*ft_new_name_end(t_dirs *dirs, char	*str);
 
 //UTILITY
+char	*ft_strclip(char *path, char *name, char *new_dirs);
 char	*ft_strncpy(char *dest, const char *src, size_t n);
 void	ft_putstr(char *str);
 void	ft_putchar(char c);
 size_t	ft_strlen(const char *s);
+
 
 #endif

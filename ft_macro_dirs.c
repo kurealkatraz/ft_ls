@@ -6,13 +6,13 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/06 17:36:16 by nowl              #+#    #+#             */
-/*   Updated: 2015/01/07 15:44:19 by mgras            ###   ########.fr       */
+/*   Updated: 2015/01/07 16:08:12 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-t_dirs	*ft_new_napa_next(t_dirs *dirs, char *name, char *path)
+t_dirs	*ft_new_napa_next(t_dirs *dirs, char *name)
 {
 	t_dirs	*new_dirs;
 
@@ -25,17 +25,18 @@ t_dirs	*ft_new_napa_next(t_dirs *dirs, char *name, char *path)
 		ft_strncpy(new_dirs->path, dirs->name, ft_strlen(dirs->name));
 		new_dirs->path[ft_strlen(dirs->name) + 1] = '\0';
 		new_dirs->path[ft_strlen(dirs->name)] = '/';
-		new_dirs->next = dirs->next;
-		dirs->next = new_dirs;
-		return (dirs);
 	}
 	else
 	{
-		new_dirs->path = (char*)malloc(sizeof(char) * ft_strlen(dirs->path) + ft_strlen(dirs->name) + 1);
-		new_dirs->path = ft_strclip(dirs->path, dirs->name); //DO IT FAGGIT
+		new_dirs->path = (char*)malloc(sizeof(char) * ft_strlen(dirs->path)
+			+ ft_strlen(dirs->name) + 1);
+		new_dirs->path = ft_strclip(dirs->path, dirs->name, new_dirs->path);
 		new_dirs->path[ft_strlen(dirs->path) + ft_strlen(dirs->name) + 1] = '\0';
 		new_dirs->path[ft_strlen(dirs->path) + ft_strlen(dirs->name)] = '/';
 	}
+	new_dirs->next = dirs->next;
+	dirs->next = new_dirs;
+	return (dirs);
 }
 
 t_dirs	*ft_new_name_end(t_dirs *dirs, char	*str)

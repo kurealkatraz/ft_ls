@@ -1,6 +1,6 @@
 NAME = ft_ls
 
-C_FILES = ft_core.c  ft_macro_ops.c ft_macro_dirs.c  ft_print_error.c  ft_utility.c
+C_FILES = ft_core.c ft_macro_dirs.c ft_macro_ops.c ft_mecha_init.c ft_print_error.c ft_recursive.c ft_utility.c
 
 all : fclean compile
 
