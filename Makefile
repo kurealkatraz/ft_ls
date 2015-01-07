@@ -8,6 +8,7 @@ clean :
 	rm -rf $(NAME)
 
 fclean : clean
+	rm -rf $(NAME).dSYM
 
 compile :
 	gcc -Wall -Werror -Wextra -g $(C_FILES) -o $(NAME)

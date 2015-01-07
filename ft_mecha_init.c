@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_error.c                                   :+:      :+:    :+:   */
+/*   ft_mecha_init.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/06 12:27:06 by nowl              #+#    #+#             */
-/*   Updated: 2015/01/07 13:39:47 by mgras            ###   ########.fr       */
+/*   Created: 2015/01/07 13:40:54 by mgras             #+#    #+#             */
+/*   Updated: 2015/01/07 13:49:22 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void	ft_op_error(int index, char err)
+void	ft_mecha_init(int argc, char **argv, t_op *ops, t_dirs *dirs)
 {
-	if (index == 400)
-	{
-		ft_putstr("ls: invalid option -- '");
-		ft_putchar(err);
-		ft_putstr("'\n");
-	}
+	if (ops->R = 1)
+		ft_get_recursive(dirs);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ls.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nowl <nowl@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/06 11:58:16 by nowl              #+#    #+#             */
-/*   Updated: 2015/01/06 19:00:47 by nowl             ###   ########.fr       */
+/*   Updated: 2015/01/07 13:40:26 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <dirent.h>
 
 typedef struct	s_op
 {

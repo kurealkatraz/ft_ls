@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_core.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nowl <nowl@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/06 11:52:25 by nowl              #+#    #+#             */
-/*   Updated: 2015/01/06 19:00:47 by nowl             ###   ########.fr       */
+/*   Updated: 2015/01/07 13:49:18 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,6 @@ int		main(int argc, char **argv)
 	}
 	if (argc > 1)
 		dirs = ft_get_dirs(argv, argc, dirs);
+	ft_mecha_init(argc, argv, ops, dirs);
 	return (0);
 }
