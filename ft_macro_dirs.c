@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_macro_dirs.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nowl <nowl@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/06 17:36:16 by nowl              #+#    #+#             */
-/*   Updated: 2015/01/07 16:08:12 by mgras            ###   ########.fr       */
+/*   Updated: 2015/01/08 15:43:44 by nowl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,8 @@ t_dirs	*ft_new_napa_next(t_dirs *dirs, char *name)
 	t_dirs	*new_dirs;
 
 	new_dirs = (t_dirs*)malloc(sizeof(t_dirs));
-	new_dirs->name = (char*)malloc(sizeof(char) * (ft_strlen(name)));
-	ft_strncpy(new_dirs->name, name, ft_strlen(name));
-	if (dirs->path == NULL)
-	{
-		new_dirs->path = (char*)malloc(sizeof(char) * ft_strlen(dirs->name) + 1);
-		ft_strncpy(new_dirs->path, dirs->name, ft_strlen(dirs->name));
-		new_dirs->path[ft_strlen(dirs->name) + 1] = '\0';
-		new_dirs->path[ft_strlen(dirs->name)] = '/';
-	}
-	else
-	{
-		new_dirs->path = (char*)malloc(sizeof(char) * ft_strlen(dirs->path)
-			+ ft_strlen(dirs->name) + 1);
-		new_dirs->path = ft_strclip(dirs->path, dirs->name, new_dirs->path);
-		new_dirs->path[ft_strlen(dirs->path) + ft_strlen(dirs->name) + 1] = '\0';
-		new_dirs->path[ft_strlen(dirs->path) + ft_strlen(dirs->name)] = '/';
-	}
+	new_dirs->name = (char*)malloc(sizeof(char) * (ft_strlen(dirs->name) + ft_strlen(name) + 1));
+	new_dirs->name = ft_strclip(dirs->name, name, new_dirs->name);
 	new_dirs->next = dirs->next;
 	dirs->next = new_dirs;
 	return (dirs);

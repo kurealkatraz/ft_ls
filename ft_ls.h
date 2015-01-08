@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ls.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nowl <nowl@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/06 11:58:16 by nowl              #+#    #+#             */
-/*   Updated: 2015/01/07 16:08:30 by mgras            ###   ########.fr       */
+/*   Updated: 2015/01/08 15:01:50 by nowl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,8 @@ typedef struct	s_op
 typedef struct	s_dirs t_dirs;
 typedef struct	s_dirs
 {
-	char	*path;
 	char	*name;
-	t_dirs	*next;
-	
+	t_dirs	*next;	
 }				t_dirs;
 
 void	ft_op_error(int index, char err);

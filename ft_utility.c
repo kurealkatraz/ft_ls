@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_utility.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
+/*   By: nowl <nowl@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/06 13:05:31 by nowl              #+#    #+#             */
-/*   Updated: 2015/01/07 15:59:03 by mgras            ###   ########.fr       */
+/*   Updated: 2015/01/08 17:15:57 by nowl             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,10 @@ char	*ft_strclip(char *path, char *name, char *new_dirs)
 	while (path[i])
 		new_dirs[s++] = path[i++];
 	i = 0;
+	new_dirs[s++] = '/';
 	while (name[i])
 		new_dirs[s++] = name[i++];
+	new_dirs[s] = '\0';
 	return (new_dirs);
 }
 
