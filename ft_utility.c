@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_utility.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nowl <nowl@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/06 13:05:31 by nowl              #+#    #+#             */
-/*   Updated: 2015/01/08 17:15:57 by nowl             ###   ########.fr       */
+/*   Updated: 2015/01/09 16:47:33 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,18 +39,17 @@ size_t	ft_strlen(const char *s)
 	return (i);
 }
 
-char	*ft_strncpy(char *dest, const char *src, size_t n)
+char	*ft_strcpy(char *dest, const char *src)
 {
 	size_t	i;
 
 	i = 0;
-	while (i < n && src[i] != '\0')
+	while (src[i] != '\0')
 	{
 		dest[i] = src[i];
 		i++;
 	}
-	while (i < n)
-		dest[i++] = '\0';
+	dest[i] = '\0';
 	return (dest);
 }
 

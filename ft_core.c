@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_core.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nowl <nowl@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/06 11:52:25 by nowl              #+#    #+#             */
-/*   Updated: 2015/01/08 14:21:55 by nowl             ###   ########.fr       */
+/*   Updated: 2015/01/09 16:48:41 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_dirs	*ft_get_dirs(char **argv, int argc, t_dirs *dirs)
 	if (ts < argc)
 	{
 		dirs->name = (char*)malloc(sizeof(char) * (ft_strlen(argv[ts])));
-		ft_strncpy(dirs->name, argv[ts], ft_strlen(argv[ts]));
+		ft_strcpy(dirs->name, argv[ts]);
 		ts++;
 	}
 	while (ts < argc && argv[ts])

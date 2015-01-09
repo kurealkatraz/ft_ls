@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_ls.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nowl <nowl@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/06 11:58:16 by nowl              #+#    #+#             */
-/*   Updated: 2015/01/08 15:01:50 by nowl             ###   ########.fr       */
+/*   Updated: 2015/01/09 16:52:30 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <dirent.h>
+# include <sys/types.h>
 
 typedef struct	s_op
 {
@@ -50,14 +51,15 @@ void	ft_get_recursive(t_dirs *dirs);
 t_op	*ft_get_options(char **argv, int argc, t_op *ops);
 t_op	*ft_init_ops(t_op *ops);
 t_op	*ft_check_ops(char c, t_op *ops);
-t_dirs	*ft_new_napa_next(t_dirs *dirs, char *name);
 
 //DIRS MACROS
 t_dirs	*ft_new_name_end(t_dirs *dirs, char	*str);
+t_dirs	*ft_del_curr(t_dirs *prev, t_dirs *curr);
+t_dirs	*ft_new_napa_next(t_dirs *dirs, char *name);
 
 //UTILITY
 char	*ft_strclip(char *path, char *name, char *new_dirs);
-char	*ft_strncpy(char *dest, const char *src, size_t n);
+char	*ft_strcpy(char *dest, const char *src);
 void	ft_putstr(char *str);
 void	ft_putchar(char c);
 size_t	ft_strlen(const char *s);

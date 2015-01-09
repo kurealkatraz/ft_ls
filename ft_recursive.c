@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_recursive.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nowl <nowl@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/07 13:48:59 by mgras             #+#    #+#             */
-/*   Updated: 2015/01/08 17:10:44 by nowl             ###   ########.fr       */
+/*   Updated: 2015/01/09 17:20:08 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,31 +29,35 @@ int		ft_check_dir_name(char *str)
 
 void	ft_get_recursive(t_dirs *dirs)
 {
-	DIR *cont;
-	t_dirs	*tmp;
-	t_dirs	*save;
-	struct dirent *in;
+	DIR 			*cont;
+	t_dirs			*tmp;
+	t_dirs			*save;
+	struct dirent 	*in;
 
 	tmp = dirs;
+	save = tmp;
 	if (dirs->name != NULL)
 	{
 		while (tmp != NULL)
 		{
-			save = tmp;
-			cont = opendir (tmp->name);
-			while (((in = readdir(cont)) != NULL))
-			{
-				if (in->d_type == DT_DIR)
-				{
-					if (ft_check_dir_name(in->d_name) == 0)
-						ft_new_napa_next(tmp, in->d_name);
-				}
-			}
 			ft_putstr(tmp->name);
 			ft_putchar('\n');
+			cont = opendir (tmp->name);
+			if (cont != NULL)
+			{
+				save = tmp;
+				while ((in = readdir(cont)) != NULL)
+				{
+					if (ft_check_dir_name(in->d_name)== 0 && in->d_type == DT_DIR)
+						tmp = ft_new_napa_next(tmp, in->d_name);
+				}
+			}
+			else
+				tmp = ft_del_curr(save, tmp);
 			tmp = save;
 			tmp = tmp->next;
-			closedir(cont);
+			if (cont != NULL)
+				closedir(cont);
 		}
 	}
 }
