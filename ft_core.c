@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/06 11:52:25 by nowl              #+#    #+#             */
-/*   Updated: 2015/01/09 16:48:41 by mgras            ###   ########.fr       */
+/*   Updated: 2015/01/12 17:45:35 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,23 @@ t_dirs	*ft_get_dirs(char **argv, int argc, t_dirs *dirs)
 	while (ts < argc && argv[ts])
 		dirs = ft_new_name_end(dirs, argv[ts++]);
 	return (dirs);
+}
+
+void	ft_test_usr_dirs(t_dirs *dirs)
+{
+	DIR				*cont;
+	t_dirs			*tmp;
+
+	tmp = dirs;
+	while (tmp != NULL)
+	{
+		cont = opendir(tmp->name);
+		if (cont == NULL)
+			ft_usr_dirs_err(tmp->name);
+		if (cont != NULL)
+			closedir(cont);
+		tmp = tmp->next;
+	}
 }
 
 t_op	*ft_get_options(char **argv, int argc, t_op *ops)
@@ -68,7 +85,10 @@ int		main(int argc, char **argv)
 		return (0);
 	}
 	if (argc > 1)
+	{
 		dirs = ft_get_dirs(argv, argc, dirs);
+		ft_test_usr_dirs(dirs);
+	}
 	ft_mecha_init(argc, argv, ops, dirs);
 	return (0);
 }

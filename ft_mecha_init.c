@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/07 13:40:54 by mgras             #+#    #+#             */
-/*   Updated: 2015/01/12 17:02:10 by mgras            ###   ########.fr       */
+/*   Updated: 2015/01/12 17:59:33 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,11 @@ void	ft_get_all(t_all *all, t_dirs *dirs, t_op *ops)
 		ft_fetch_local(all, ops);
 	else
 		ft_fetch_dirs(all, dirs, ops);
+	if (ops->t == 0)
+		all = ft_alpha_sort(all);		//SHIT TO DO YOU OLD TWAT
+	/*else
+		ft_modtime_sort(all);	//SHIT TO DO YOU OLD WAFFLE
+	ft_disp_init(all);			//SHIT TO DO YOU OLD TACCO*/
 }
 
 void	ft_mecha_init(int argc, char **argv, t_op *ops, t_dirs *dirs)

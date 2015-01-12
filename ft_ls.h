@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/06 11:58:16 by nowl              #+#    #+#             */
-/*   Updated: 2015/01/12 16:47:52 by mgras            ###   ########.fr       */
+/*   Updated: 2015/01/12 18:14:46 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct	s_op
 
 typedef struct	s_lsl
 {
+	mode_t	mode;
 	nlink_t	hardlink;
 	uid_t	uid;
 	gid_t	gid;
@@ -43,19 +44,23 @@ typedef struct	s_dirs
 {
 	char	*name;
 	int		usr;
+	t_all	file;
 	t_dirs	*next;	
 }				t_dirs;
 
 typedef struct	s_all t_all;
 typedef struct	s_all
 {
-	char	*file_name;
-	t_lsl	*lsl;
-	t_dirs	*path;
-	t_all	*next;
+	char		*file_name;
+	blkcnt_t	blocks;
+	t_lsl		*lsl;
+	t_dirs		*path;
+	t_all		*next;
 }				t_all;
 
+//ERROR PRINT
 void	ft_op_error(int index, char err);
+void	ft_usr_dirs_err(char *erred_dir);
 
 //ALL MACROS
 t_all	*ft_new_local_next(t_all *all, char *filename);
@@ -67,6 +72,7 @@ t_all	*ft_get_lsl(t_all* all, char *path);
 //CORE
 t_op	*ft_get_options(char **argv, int argc, t_op *ops);
 t_dirs	*ft_get_dirs(char **argv, int argc, t_dirs *dirs);
+void	ft_test_usr_dirs(t_dirs *dirs);
 
 //-R Init
 void	ft_mecha_init(int argc, char **argv, t_op *ops, t_dirs *dirs);
@@ -92,6 +98,5 @@ char	*ft_strcpy(char *dest, const char *src);
 void	ft_putstr(char *str);
 void	ft_putchar(char c);
 size_t	ft_strlen(const char *s);
-
 
 #endif

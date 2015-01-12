@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/12 14:38:16 by mgras             #+#    #+#             */
-/*   Updated: 2015/01/12 16:49:27 by mgras            ###   ########.fr       */
+/*   Updated: 2015/01/12 18:03:23 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ t_all	*ft_new_fina_next(t_all *all, char *filename, t_dirs *path)
 		all->file_name = (char*)malloc(sizeof(char) * ft_strlen(filename));
 		ft_strcpy(all->file_name, filename);
 		all->path = path;
+		path->file = all;
 	}
 	else
 	{
@@ -50,6 +51,7 @@ t_all	*ft_new_fina_next(t_all *all, char *filename, t_dirs *path)
 		new_all->file_name = (char*)malloc(sizeof(char) * ft_strlen(filename));
 		ft_strcpy(new_all->file_name, filename);
 		new_all->path = path;
+		path->file = new_all;
 		all->next = new_all;
 	}
 	return (all);
