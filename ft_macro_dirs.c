@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/06 17:36:16 by nowl              #+#    #+#             */
-/*   Updated: 2015/01/09 17:30:09 by mgras            ###   ########.fr       */
+/*   Updated: 2015/01/12 14:31:51 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ t_dirs	*ft_new_napa_next(t_dirs *dirs, char *name)
 	new_dirs = (t_dirs*)malloc(sizeof(t_dirs));
 	new_dirs->name = (char*)malloc(sizeof(char) * (ft_strlen(dirs->name) + ft_strlen(name)) + 2);
 	new_dirs->name = ft_strclip(dirs->name, name, new_dirs->name);
+	new_dirs->usr = 0;
 	new_dirs->next = dirs->next;
 	dirs->next = new_dirs;
 	return (dirs);
@@ -41,6 +42,7 @@ t_dirs	*ft_new_name_end(t_dirs *dirs, char	*str)
 
 	new_dirs = (t_dirs*)malloc(sizeof(t_dirs));
 	new_dirs->name = (char*)malloc(sizeof(char) * (ft_strlen(str)));
+	new_dirs->usr = 1;
 	if (dirs->next == NULL)
 	{
 		new_dirs->name = (char*)malloc(sizeof(char) * (ft_strlen(str)));

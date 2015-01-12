@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/07 13:48:59 by mgras             #+#    #+#             */
-/*   Updated: 2015/01/09 17:20:08 by mgras            ###   ########.fr       */
+/*   Updated: 2015/01/12 16:53:44 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ void	ft_get_recursive(t_dirs *dirs)
 	{
 		while (tmp != NULL)
 		{
-			ft_putstr(tmp->name);
-			ft_putchar('\n');
 			cont = opendir (tmp->name);
 			if (cont != NULL)
 			{
