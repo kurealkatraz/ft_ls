@@ -19,6 +19,9 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 
+typedef struct	s_dirs t_dirs;
+typedef struct	s_all t_all;
+
 typedef struct	s_op
 {
 	int	R;
@@ -39,16 +42,14 @@ typedef struct	s_lsl
 	time_t	modtime;
 }				t_lsl;
 
-typedef struct	s_dirs t_dirs;
 typedef struct	s_dirs
 {
 	char	*name;
 	int		usr;
-	t_all	file;
+	t_all	*file;
 	t_dirs	*next;	
 }				t_dirs;
 
-typedef struct	s_all t_all;
 typedef struct	s_all
 {
 	char		*file_name;
