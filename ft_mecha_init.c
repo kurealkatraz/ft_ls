@@ -61,9 +61,9 @@ void	ft_get_all(t_all *all, t_dirs *dirs, t_op *ops)
 		ft_fetch_local(all, ops);
 	else
 		ft_fetch_dirs(all, dirs, ops);
-	if (ops->t == 0)
+	/*if (ops->t == 0)
 		all = ft_alpha_sort(all);		//SHIT TO DO YOU OLD TWAT
-	/*else
+	else
 		ft_modtime_sort(all);	//SHIT TO DO YOU OLD WAFFLE
 	ft_disp_init(all);			//SHIT TO DO YOU OLD TACCO*/
 }
