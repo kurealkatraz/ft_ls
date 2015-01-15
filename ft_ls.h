@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/06 11:58:16 by nowl              #+#    #+#             */
-/*   Updated: 2015/01/12 18:14:46 by mgras            ###   ########.fr       */
+/*   Updated: 2015/01/15 16:11:00 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,17 +45,15 @@ typedef struct	s_lsl
 typedef struct	s_dirs
 {
 	char	*name;
-	int		usr;
-	t_all	*file;
 	t_dirs	*next;	
 }				t_dirs;
 
 typedef struct	s_all
 {
 	char		*file_name;
+	char		*path;
 	blkcnt_t	blocks;
 	t_lsl		*lsl;
-	t_dirs		*path;
 	t_all		*next;
 }				t_all;
 
@@ -63,9 +61,11 @@ typedef struct	s_all
 void	ft_op_error(int index, char err);
 void	ft_usr_dirs_err(char *erred_dir);
 
+//ALPHA SORT
+
+
 //ALL MACROS
-t_all	*ft_new_local_next(t_all *all, char *filename);
-t_all	*ft_new_fina_next(t_all *all, char *filename, t_dirs *path);
+t_all	*ft_new_fina_next(t_all *a, char *file_name, char *path);
 
 //LSL MACROS
 t_all	*ft_get_lsl(t_all* all, char *path);
@@ -80,7 +80,7 @@ void	ft_mecha_init(int argc, char **argv, t_op *ops, t_dirs *dirs);
 
 //Mecha
 void	ft_get_recursive(t_dirs *dirs);
-void	ft_fetch_local(t_all *all, t_op *ops);
+t_all	*ft_fetch_local(t_all *all, t_op *ops);
 void	ft_get_all(t_all *all, t_dirs *dirs, t_op *ops);
 
 //OP MACROS
