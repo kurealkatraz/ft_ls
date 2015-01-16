@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/06 11:58:16 by nowl              #+#    #+#             */
-/*   Updated: 2015/01/15 16:11:00 by mgras            ###   ########.fr       */
+/*   Updated: 2015/01/16 12:59:21 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct	s_all
 {
 	char		*file_name;
 	char		*path;
+	char		*full;
 	blkcnt_t	blocks;
 	t_lsl		*lsl;
 	t_all		*next;
@@ -62,7 +63,8 @@ void	ft_op_error(int index, char err);
 void	ft_usr_dirs_err(char *erred_dir);
 
 //ALPHA SORT
-
+void	ft_alphasort(t_all *a);
+void	ft_swap(t_all *a);
 
 //ALL MACROS
 t_all	*ft_new_fina_next(t_all *a, char *file_name, char *path);

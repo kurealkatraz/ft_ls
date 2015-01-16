@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/06 17:36:16 by nowl              #+#    #+#             */
-/*   Updated: 2015/01/15 15:34:17 by mgras            ###   ########.fr       */
+/*   Updated: 2015/01/16 10:25:38 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,9 @@ t_dirs	*ft_new_name_end(t_dirs *dirs, char	*str)
 	t_dirs	*tmp;
 
 	new_dirs = (t_dirs*)malloc(sizeof(t_dirs));
-	new_dirs->name = (char*)malloc(sizeof(char) * (ft_strlen(str)));
+	new_dirs->name = (char*)malloc(sizeof(char) * (ft_strlen(str)) + 1);
 	if (dirs->next == NULL)
 	{
-		new_dirs->name = (char*)malloc(sizeof(char) * (ft_strlen(str)));
 		ft_strcpy(new_dirs->name, str);
 		dirs->next = new_dirs;
 	}

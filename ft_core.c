@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/06 11:52:25 by nowl              #+#    #+#             */
-/*   Updated: 2015/01/12 17:45:35 by mgras            ###   ########.fr       */
+/*   Updated: 2015/01/16 09:53:05 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,8 @@ int		main(int argc, char **argv)
 	if (argc > 1)
 	{
 		dirs = ft_get_dirs(argv, argc, dirs);
-		ft_test_usr_dirs(dirs);
+		if (dirs->name != NULL)
+			ft_test_usr_dirs(dirs);
 	}
 	ft_mecha_init(argc, argv, ops, dirs);
 	return (0);

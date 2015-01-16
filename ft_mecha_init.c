@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/07 13:40:54 by mgras             #+#    #+#             */
-/*   Updated: 2015/01/15 16:12:44 by mgras            ###   ########.fr       */
+/*   Updated: 2015/01/16 13:00:22 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,22 @@ t_all	*ft_fetch_all(t_all *a_tmp, t_op *ops, t_dirs *path)
 {
 	DIR				*cont;
 	struct dirent	*in;
-	//char			*str_lsl;
+	char			*str_lsl;
 
-	if (path->name == NULL)
-		cont = opendir(".");
-	else
-		cont = opendir(path->name);
+	cont = opendir(path->name);
 	if (cont != NULL && ops)
 	{
 		while ((in = readdir(cont)) != NULL)
 		{
 			a_tmp = ft_new_fina_next(a_tmp, in->d_name, path->name);
+			if (ops->l == 1)
+			{
+				str_lsl = (char*)malloc(sizeof(char) *
+					(ft_strlen(in->d_name) + ft_strlen(path->name)));
+				ft_strclip(path->name, in->d_name, str_lsl);
+				ft_get_lsl(a_tmp, str_lsl);
+				free(str_lsl);
+			}
 			a_tmp = a_tmp->next;
 		}
 		closedir(cont);
@@ -41,42 +46,28 @@ void	ft_get_all(t_all *all, t_dirs *dirs, t_op *ops)
 
 	a_tmp = all;
 	d_tmp = dirs;
-	if (d_tmp->name == NULL)
-		ft_fetch_all(a_tmp, ops, d_tmp);
-	else
+	while(d_tmp->next != NULL)
 	{
-		while(d_tmp != NULL)
-		{
-			a_tmp = ft_fetch_all(a_tmp, ops, d_tmp);
-			d_tmp = d_tmp->next;
-		}
+		a_tmp = ft_fetch_all(a_tmp, ops, d_tmp);
+		d_tmp = d_tmp->next;
 	}
 }
 
 void	ft_mecha_init(int argc, char **argv, t_op *ops, t_dirs *dirs)
 {
 	t_all	*all;
-	t_dirs	*d_tmp;
 
-	d_tmp = dirs;
+	if (dirs->name == NULL)
+	{
+		dirs->name = (char*)malloc(sizeof(char) * 2);
+		ft_strcpy(dirs->name, ".");
+	}
 	if (ops->R == 1 && argv && argc)
 		ft_get_recursive(dirs);
-	while(d_tmp != NULL)
-	{
-		ft_putstr(d_tmp->name);
-		ft_putchar('\n');
-		d_tmp = d_tmp->next;
-	}
 	all = (t_all*)malloc(sizeof(t_all));
 	all->next = NULL;
 	ft_get_all(all, dirs, ops);
 	all = all->next;
-	while (all != NULL)
-	{
-		ft_putstr(all->path);
-		ft_putchar('/');
-		ft_putstr(all->file_name);
-		ft_putchar('\n');
-		all = all->next;
-	}
+	if (ops->t == 0)
+		ft_alphasort(all);
 }
