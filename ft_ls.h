@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/06 11:58:16 by nowl              #+#    #+#             */
-/*   Updated: 2015/01/19 12:55:22 by mgras            ###   ########.fr       */
+/*   Updated: 2015/01/19 17:44:46 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FT_LS_H
 
 # include <pwd.h>
+# include <grp.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <dirent.h>

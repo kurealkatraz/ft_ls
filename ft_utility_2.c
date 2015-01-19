@@ -6,13 +6,13 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/19 12:34:49 by mgras             #+#    #+#             */
-/*   Updated: 2015/01/19 12:44:04 by mgras            ###   ########.fr       */
+/*   Updated: 2015/01/19 16:45:14 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int		get_digit(int n)
+int		ft_get_digit(int n)
 {
 	int		count;
 

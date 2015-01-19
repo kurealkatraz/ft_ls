@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/19 11:56:55 by mgras             #+#    #+#             */
-/*   Updated: 2015/01/19 13:19:08 by mgras            ###   ########.fr       */
+/*   Updated: 2015/01/19 16:45:31 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	ft_put_st_nlinks(nlink_t links, int offset)
 {
 	int		ln_len;
 
-	ln_len = get_digit((int)links);
+	ln_len = ft_get_digit((int)links);
 	if (ln_len < offset)
 		while (offset-- > ln_len)
 			ft_putchar(' ');
