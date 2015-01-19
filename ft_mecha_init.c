@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/07 13:40:54 by mgras             #+#    #+#             */
-/*   Updated: 2015/01/16 13:00:22 by mgras            ###   ########.fr       */
+/*   Updated: 2015/01/19 13:23:37 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	ft_get_all(t_all *all, t_dirs *dirs, t_op *ops)
 
 	a_tmp = all;
 	d_tmp = dirs;
-	while(d_tmp->next != NULL)
+	while (d_tmp->next != NULL)
 	{
 		a_tmp = ft_fetch_all(a_tmp, ops, d_tmp);
 		d_tmp = d_tmp->next;

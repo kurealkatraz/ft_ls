@@ -6,18 +6,22 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/06 11:58:16 by nowl              #+#    #+#             */
-/*   Updated: 2015/01/16 12:59:21 by mgras            ###   ########.fr       */
+/*   Updated: 2015/01/19 12:55:22 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_LS_H
 # define FT_LS_H
 
+# include <pwd.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <dirent.h>
 # include <sys/types.h>
 # include <sys/stat.h>
+# include <sys/errno.h>
+# include <sys/xattr.h>
+# include <uuid/uuid.h>
 
 typedef struct	s_dirs t_dirs;
 typedef struct	s_all t_all;
@@ -58,9 +62,13 @@ typedef struct	s_all
 	t_all		*next;
 }				t_all;
 
+//FILE PRINT
+void	ft_print_isolation(struct stat, char *file_name, t_op *ops);
+
 //ERROR PRINT
 void	ft_op_error(int index, char err);
 void	ft_usr_dirs_err(char *erred_dir);
+void	ft_forbiden_access(char *erred_dir);
 
 //ALPHA SORT
 void	ft_alphasort(t_all *a);
@@ -75,7 +83,7 @@ t_all	*ft_get_lsl(t_all* all, char *path);
 //CORE
 t_op	*ft_get_options(char **argv, int argc, t_op *ops);
 t_dirs	*ft_get_dirs(char **argv, int argc, t_dirs *dirs);
-void	ft_test_usr_dirs(t_dirs *dirs);
+void	ft_test_usr_dirs(t_dirs *dirs, t_op	*ops);
 
 //-R Init
 void	ft_mecha_init(int argc, char **argv, t_op *ops, t_dirs *dirs);

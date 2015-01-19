@@ -1,31 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_macro_lsl.c                                     :+:      :+:    :+:   */
+/*   ft_utility_2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/12 15:01:52 by mgras             #+#    #+#             */
-/*   Updated: 2015/01/19 13:22:45 by mgras            ###   ########.fr       */
+/*   Created: 2015/01/19 12:34:49 by mgras             #+#    #+#             */
+/*   Updated: 2015/01/19 12:44:04 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-t_all	*ft_get_lsl(t_all *all, char *path)
+int		get_digit(int n)
 {
-	struct stat ss;
-	t_lsl		*lsl;
+	int		count;
 
-	lsl = (t_lsl*)malloc(sizeof(t_lsl));
-	lstat(path, &ss);
-	all->blocks = ss.st_blocks;
-	lsl->mode = ss.st_mode;
-	lsl->hardlink = ss.st_nlink;
-	lsl->uid = ss.st_uid;
-	lsl->gid = ss.st_gid;
-	lsl->size = ss.st_size;
-	lsl->modtime = ss.st_mtime;
-	all->lsl = lsl;
-	return (all);
+	count  = 0;
+	while (n =/ 10 > 10)
+		count++;
+	return (count);
+}
+
+void	ft_putnbr(int n)
+{
+	if (n < 0)
+	{
+		ft_putchar('-');
+		ft_putnbr(-n);
+	}
+	else if (n > 9)
+	{
+		ft_putnbr(n / 10);
+		ft_putnbr(n % 10);
+	}
+	else
+		ft_putchar(n + '0');
 }
