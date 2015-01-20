@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/19 12:34:49 by mgras             #+#    #+#             */
-/*   Updated: 2015/01/19 16:45:14 by mgras            ###   ########.fr       */
+/*   Updated: 2015/01/20 17:06:17 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,11 @@ int		ft_get_digit(int n)
 	int		count;
 
 	count  = 0;
-	while (n =/ 10 > 10)
+	while (n > 10)
+	{
+		n = n / 10;
 		count++;
+	}
 	return (count);
 }
 

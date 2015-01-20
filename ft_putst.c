@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/19 11:56:55 by mgras             #+#    #+#             */
-/*   Updated: 2015/01/19 16:45:31 by mgras            ###   ########.fr       */
+/*   Updated: 2015/01/20 17:17:18 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,15 @@ void	ft_put_st_mode(mode_t mode)
 
 void	ft_put_restrict(mode_t mode)
 {
-	mode == S_IRUSR ? ft_putchar('r') : ft_putchar('-');
-	mode == S_IWUSR ? ft_putchar('w') : ft_putchar('-');
-	mode == S_IXUSR ? ft_putchar('x') : ft_putchar('-');
-	mode == S_IRGRP ? ft_putchar('r') : ft_putchar('-');
-	mode == S_IWGRP ? ft_putchar('w') : ft_putchar('-');
-	mode == S_IXGRP ? ft_putchar('x') : ft_putchar('-');
-	mode == S_IROTH ? ft_putchar('r') : ft_putchar('-');
-	mode == S_IWOTH ? ft_putchar('w') : ft_putchar('-');
-	mode == S_IXOTH ? ft_putchar('x') : ft_putchar('-');
+	mode & S_IRUSR ? ft_putchar('r') : ft_putchar('-');
+	mode & S_IWUSR ? ft_putchar('w') : ft_putchar('-');
+	mode & S_IXUSR ? ft_putchar('x') : ft_putchar('-');
+	mode & S_IRGRP ? ft_putchar('r') : ft_putchar('-');
+	mode & S_IWGRP ? ft_putchar('w') : ft_putchar('-');
+	mode & S_IXGRP ? ft_putchar('x') : ft_putchar('-');
+	mode & S_IROTH ? ft_putchar('r') : ft_putchar('-');
+	mode & S_IWOTH ? ft_putchar('w') : ft_putchar('-');
+	mode & S_IXOTH ? ft_putchar('x') : ft_putchar('-');
 	ft_putstr("  ");
 }
 

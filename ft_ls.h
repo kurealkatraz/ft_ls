@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/06 11:58:16 by nowl              #+#    #+#             */
-/*   Updated: 2015/01/19 17:44:46 by mgras            ###   ########.fr       */
+/*   Updated: 2015/01/20 17:59:04 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <pwd.h>
 # include <grp.h>
+# include <time.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <dirent.h>
@@ -50,7 +51,8 @@ typedef struct	s_lsl
 typedef struct	s_dirs
 {
 	char	*name;
-	t_dirs	*next;	
+	int		file;
+	t_dirs	*next;
 }				t_dirs;
 
 typedef struct	s_all
@@ -64,7 +66,22 @@ typedef struct	s_all
 }				t_all;
 
 //FILE PRINT
-void	ft_print_isolation(struct stat, char *file_name, t_op *ops);
+void	ft_print_isolation(struct stat ss, char *file_name, t_op *ops);
+
+//GET OFFSET
+int		get_nlink_off(nlink_t links);
+int		get_uid_off(uid_t uid);
+int		get_gid_off(gid_t gid);
+int		get_size_off(size_t size);
+
+//PUTST
+void	ft_put_gid(gid_t gid, int offset);
+void	ft_put_size(size_t size, int offset);
+void	ft_put_st_nlinks(nlink_t links, int offset);
+void	ft_put_uid(uid_t uid, int offset);
+void	ft_put_modtime(struct stat ss);
+void	ft_put_st_mode(mode_t mode);
+void	ft_put_restrict(mode_t mode);
 
 //ERROR PRINT
 void	ft_op_error(int index, char err);
@@ -84,7 +101,7 @@ t_all	*ft_get_lsl(t_all* all, char *path);
 //CORE
 t_op	*ft_get_options(char **argv, int argc, t_op *ops);
 t_dirs	*ft_get_dirs(char **argv, int argc, t_dirs *dirs);
-void	ft_test_usr_dirs(t_dirs *dirs, t_op	*ops);
+void	ft_test_usr_dirs(t_dirs *dirs);
 
 //-R Init
 void	ft_mecha_init(int argc, char **argv, t_op *ops, t_dirs *dirs);
@@ -109,6 +126,8 @@ char	*ft_strclip(char *path, char *name, char *new_dirs);
 char	*ft_strcpy(char *dest, const char *src);
 void	ft_putstr(char *str);
 void	ft_putchar(char c);
+void	ft_putnbr(int n);
 size_t	ft_strlen(const char *s);
+int		ft_get_digit(int n);
 
 #endif

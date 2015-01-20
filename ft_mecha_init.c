@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/07 13:40:54 by mgras             #+#    #+#             */
-/*   Updated: 2015/01/19 13:23:37 by mgras            ###   ########.fr       */
+/*   Updated: 2015/01/20 18:10:05 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,10 @@ void	ft_mecha_init(int argc, char **argv, t_op *ops, t_dirs *dirs)
 	all->next = NULL;
 	ft_get_all(all, dirs, ops);
 	all = all->next;
-	if (ops->t == 0)
-		ft_alphasort(all);
+	while (all != NULL)
+	{
+		ft_putstr(all->file_name);
+		ft_putchar('\n');
+		all = all->next;
+	}
 }
