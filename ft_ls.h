@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/06 11:58:16 by nowl              #+#    #+#             */
-/*   Updated: 2015/01/20 17:59:04 by mgras            ###   ########.fr       */
+/*   Updated: 2015/01/21 11:46:54 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,12 @@ typedef struct	s_op
 
 typedef struct	s_lsl
 {
-	mode_t	mode;
-	nlink_t	hardlink;
-	uid_t	uid;
-	gid_t	gid;
-	off_t	size;
-	time_t	modtime;
+	mode_t			mode;
+	nlink_t			hardlink;
+	uid_t			uid;
+	gid_t			gid;
+	off_t			size;
+	struct timespec	st_mtimespec;
 }				t_lsl;
 
 typedef struct	s_dirs
@@ -65,8 +65,12 @@ typedef struct	s_all
 	t_all		*next;
 }				t_all;
 
+//SORTING
+void	time_stamp_sort(t_all *a);
+void	ft_core_sorting(t_all *all, t_op *ops);
+
 //FILE PRINT
-void	ft_print_isolation(struct stat ss, char *file_name, t_op *ops);
+
 
 //GET OFFSET
 int		get_nlink_off(nlink_t links);
@@ -129,5 +133,6 @@ void	ft_putchar(char c);
 void	ft_putnbr(int n);
 size_t	ft_strlen(const char *s);
 int		ft_get_digit(int n);
+int		ft_strcmp(const char *s1, const char *s2);
 
 #endif

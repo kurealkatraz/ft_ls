@@ -6,11 +6,21 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/19 12:34:49 by mgras             #+#    #+#             */
-/*   Updated: 2015/01/20 17:06:17 by mgras            ###   ########.fr       */
+/*   Updated: 2015/01/21 12:07:43 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
+
+int		ft_strcmp(const char *s1, const char *s2)
+{
+	while (*s1 && (*s1 == *s2))
+	{
+		s1++;
+		s2++;
+	}
+	return (*(const unsigned char*)s1 - *(const unsigned char*)s2);
+}
 
 int		ft_get_digit(int n)
 {

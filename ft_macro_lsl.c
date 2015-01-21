@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/12 15:01:52 by mgras             #+#    #+#             */
-/*   Updated: 2015/01/19 13:22:45 by mgras            ###   ########.fr       */
+/*   Updated: 2015/01/21 11:19:01 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ t_all	*ft_get_lsl(t_all *all, char *path)
 	lsl->uid = ss.st_uid;
 	lsl->gid = ss.st_gid;
 	lsl->size = ss.st_size;
-	lsl->modtime = ss.st_mtime;
+	lsl->st_mtimespec = ss.st_mtimespec;
 	all->lsl = lsl;
 	return (all);
 }

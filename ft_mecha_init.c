@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/07 13:40:54 by mgras             #+#    #+#             */
-/*   Updated: 2015/01/20 18:10:05 by mgras            ###   ########.fr       */
+/*   Updated: 2015/01/21 12:36:48 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_all	*ft_fetch_all(t_all *a_tmp, t_op *ops, t_dirs *path)
 		while ((in = readdir(cont)) != NULL)
 		{
 			a_tmp = ft_new_fina_next(a_tmp, in->d_name, path->name);
-			if (ops->l == 1)
+			if (ops->l == 1 || ops->t == 1)
 			{
 				str_lsl = (char*)malloc(sizeof(char) *
 					(ft_strlen(in->d_name) + ft_strlen(path->name)));
@@ -57,7 +57,7 @@ void	ft_mecha_init(int argc, char **argv, t_op *ops, t_dirs *dirs)
 {
 	t_all	*all;
 
-	if (dirs->name == NULL)
+	if (dirs->name == NULL || dirs->file == 1)
 	{
 		dirs->name = (char*)malloc(sizeof(char) * 2);
 		ft_strcpy(dirs->name, ".");
@@ -68,10 +68,6 @@ void	ft_mecha_init(int argc, char **argv, t_op *ops, t_dirs *dirs)
 	all->next = NULL;
 	ft_get_all(all, dirs, ops);
 	all = all->next;
-	while (all != NULL)
-	{
-		ft_putstr(all->file_name);
-		ft_putchar('\n');
-		all = all->next;
-	}
+	ft_core_sorting(all, ops);
+	//ft_core_print(all, ops);
 }
