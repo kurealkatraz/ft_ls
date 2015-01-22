@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/19 16:33:39 by mgras             #+#    #+#             */
-/*   Updated: 2015/01/21 12:26:51 by mgras            ###   ########.fr       */
+/*   Updated: 2015/01/22 17:58:59 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,7 @@ void	ft_put_size(size_t size, int offset)
 
 void	ft_put_modtime(struct stat ss)
 {
-/*	char	*mtime;
 
-	mtime = (char*)malloc(sizeof(char) * ft_strlen(ctime(ss.st_mtimespec.tv_sec)));
-	ft_strcpy(mtime, ctime(ss.st_mtimespec.tv_sec));
-*/
 	if (ss.st_mtimespec.tv_sec)
 		return;
 }

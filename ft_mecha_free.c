@@ -1,37 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_print_error.c                                   :+:      :+:    :+:   */
+/*   ft_mecha_free.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/01/06 12:27:06 by nowl              #+#    #+#             */
-/*   Updated: 2015/01/22 19:47:46 by mgras            ###   ########.fr       */
+/*   Created: 2015/01/22 17:00:23 by mgras             #+#    #+#             */
+/*   Updated: 2015/01/22 17:34:25 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void	ft_op_error(int index, char err)
+void	ft_free_all(t_all *all, t_dirs *dirs, t_op *ops)
 {
-	if (index == 400)
+	t_all	*a_tmp;
+	t_dirs	*d_tmp;
+
+	while (all->next != NULL)
 	{
-		ft_putstr("ls: invalid option -- '");
-		ft_putchar(err);
-		ft_putchar('\n');
+		a_tmp = all;
+		free(all->file_name);
+		free(all->path);
+		free(all->full);
+		all = all->next;
+		free(a_tmp);
 	}
-}
-
-void	ft_usr_dirs_err(char *erred_dir)
-{
-	ft_putstr("ls: ");
-	ft_putstr(erred_dir);
-	ft_putstr(": No such file or directory\n");
-}
-
-void	ft_forbiden_access(char *erred_dir)
-{
-	ft_putstr("ls: ");
-	ft_putstr(erred_dir);
-	ft_putstr(": Forbiden Access\n");
+	while (dirs != NULL)
+	{
+		d_tmp = dirs;
+		free(dirs->name);
+		dirs = dirs->next;
+		free(d_tmp);
+	}
+	free (ops);
 }

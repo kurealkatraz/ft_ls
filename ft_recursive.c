@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/07 13:48:59 by mgras             #+#    #+#             */
-/*   Updated: 2015/01/21 12:23:20 by mgras            ###   ########.fr       */
+/*   Updated: 2015/01/22 20:00:09 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,13 @@ void	ft_get_recursive(t_dirs *dirs)
 		{
 			save = tmp;
 			while ((in = readdir(cont)) != NULL)
-				if (ft_check_dir_name(in->d_name) == 0 &&
-					in->d_type == DT_DIR)
+				if (ft_check_dir_name(in->d_name) == 0 && in->d_type == DT_DIR)
 					tmp = ft_new_napa_next(tmp, in->d_name);
+			closedir(cont);
 		}
 		else
 			tmp = ft_del_curr(save, tmp);
 		tmp = save;
 		tmp = tmp->next;
-		if (cont != NULL)
-			closedir(cont);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/06 11:52:25 by nowl              #+#    #+#             */
-/*   Updated: 2015/01/21 12:23:21 by mgras            ###   ########.fr       */
+/*   Updated: 2015/01/22 19:53:42 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 t_dirs	*ft_get_dirs(char **argv, int argc, t_dirs *dirs)
 {
 	int		ts;
+	t_dirs	*save;
 
 	ts = 1;
 	while (ts < argc && argv[ts][0] == '-')
@@ -25,8 +26,14 @@ t_dirs	*ft_get_dirs(char **argv, int argc, t_dirs *dirs)
 		ft_strcpy(dirs->name, argv[ts]);
 		ts++;
 	}
+	else
+	{
+		dirs->name = (char*)malloc(sizeof(char) * (ft_strlen(".")));
+		ft_strcpy(dirs->name, ".");
+	}
+	save = dirs;
 	while (ts < argc && argv[ts])
-		dirs = ft_new_name_end(dirs, argv[ts++]);
+		ft_new_napa_next(save, argv[ts++]);
 	return (dirs);
 }
 
@@ -41,7 +48,7 @@ void	ft_test_usr_dirs(t_dirs *dirs)
 		lstat(tmp->name, &ss);
 		if (errno == 2)
 			ft_usr_dirs_err(tmp->name);
-		if (ss.st_mode != S_IFDIR)
+		if (S_ISDIR(ss.st_mode))
 			tmp->file = 1;
 		listxattr(tmp->name, NULL, 0, XATTR_NOFOLLOW);
 		if (errno == 13)
@@ -85,7 +92,8 @@ int		main(int argc, char **argv)
 		ops = ft_get_options(argv, argc, ops);
 	if (argc > 1 && ops->err == 400)
 	{
-		free (ops);
+		free(ops);
+		free(dirs);
 		return (0);
 	}
 	if (argc > 1)

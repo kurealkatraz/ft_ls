@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/06 11:58:16 by nowl              #+#    #+#             */
-/*   Updated: 2015/01/21 11:46:54 by mgras            ###   ########.fr       */
+/*   Updated: 2015/01/22 17:11:06 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,16 @@ typedef struct	s_all
 	t_lsl		*lsl;
 	t_all		*next;
 }				t_all;
+
+//MECHA FREE
+void	ft_free_all(t_all *all, t_dirs *dirs, t_op *ops);
+
+//MECHA SWAP
+void	ft_swap_afull(t_all *a);
+void	ft_swap_afile_name(t_all *a);
+void	ft_swap_apath(t_all *a);
+void	ft_swap_ablock(t_all *a);
+void	ft_swap_core(t_all *a);
 
 //SORTING
 void	time_stamp_sort(t_all *a);
@@ -134,5 +144,6 @@ void	ft_putnbr(int n);
 size_t	ft_strlen(const char *s);
 int		ft_get_digit(int n);
 int		ft_strcmp(const char *s1, const char *s2);
+int		ft_check_if_dirs(t_dirs	*dirs);
 
 #endif
