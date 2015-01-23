@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/22 15:32:10 by mgras             #+#    #+#             */
-/*   Updated: 2015/01/22 17:52:42 by mgras            ###   ########.fr       */
+/*   Updated: 2015/01/23 10:57:57 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,18 @@ void	ft_swap_ablock(t_all *a)
 	a->next->blocks = tmp;
 }
 
-void	ft_swap_core(t_all *a)
+void	ft_swap_core(t_all *a, t_op *ops)
 {
+	time_t	tmp;
+
 	ft_swap_afull(a);
 	ft_swap_afile_name(a);
 	ft_swap_apath(a);
 	ft_swap_ablock(a);
+	if (ops->l == 1 || ops->t == 1)
+	{
+		tmp = a->lsl->st_mtimespec.tv_sec;
+		a->lsl->st_mtimespec.tv_sec = a->next->lsl->st_mtimespec.tv_sec;
+		a->next->lsl->st_mtimespec.tv_sec = tmp;
+	}
 }

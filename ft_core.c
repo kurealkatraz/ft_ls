@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/06 11:52:25 by nowl              #+#    #+#             */
-/*   Updated: 2015/01/22 19:53:42 by mgras            ###   ########.fr       */
+/*   Updated: 2015/01/23 11:24:30 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_dirs	*ft_get_dirs(char **argv, int argc, t_dirs *dirs)
 	}
 	else
 	{
-		dirs->name = (char*)malloc(sizeof(char) * (ft_strlen(".")));
+		dirs->name = (char*)malloc(sizeof(char) * (ft_strlen(".")) + 1);
 		ft_strcpy(dirs->name, ".");
 	}
 	save = dirs;
@@ -102,6 +102,6 @@ int		main(int argc, char **argv)
 		if (dirs->name != NULL)
 			ft_test_usr_dirs(dirs);
 	}
-	ft_mecha_init(argc, argv, ops, dirs);
+	ft_mecha_init(ops, dirs);
 	return (0);
 }
