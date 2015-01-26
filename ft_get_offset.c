@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/20 15:21:42 by mgras             #+#    #+#             */
-/*   Updated: 2015/01/20 17:05:09 by mgras            ###   ########.fr       */
+/*   Updated: 2015/01/26 15:54:07 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,10 @@ int		get_uid_off(uid_t uid)
 	int				offset;
 
 	med = getpwuid(uid);
-	offset = ft_strlen(med->pw_name);
+	if (med != NULL)
+		offset = ft_strlen(med->pw_name);
+	else
+		offset = ft_get_digit(uid);
 	return (offset + 2);
 }
 

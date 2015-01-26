@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/19 16:33:39 by mgras             #+#    #+#             */
-/*   Updated: 2015/01/22 17:58:59 by mgras            ###   ########.fr       */
+/*   Updated: 2015/01/26 16:15:24 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	ft_put_gid(gid_t gid, int offset)
 	ft_putstr(med->gr_name);
 	while (len++ < offset)
 		ft_putchar(' ');
-	ft_putstr("   ");
+	ft_putstr("  ");
 }
 
 void	ft_put_size(size_t size, int offset)
@@ -36,9 +36,9 @@ void	ft_put_size(size_t size, int offset)
 	ft_putchar(' ');
 }
 
-void	ft_put_modtime(struct stat ss)
+void	ft_put_modtime(struct timespec st_mtimespec)
 {
 
-	if (ss.st_mtimespec.tv_sec)
+	if (st_mtimespec.tv_sec)
 		return;
 }

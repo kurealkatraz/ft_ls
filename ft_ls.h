@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/06 11:58:16 by nowl              #+#    #+#             */
-/*   Updated: 2015/01/23 11:33:29 by mgras            ###   ########.fr       */
+/*   Updated: 2015/01/26 17:20:20 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,14 @@
 
 typedef struct	s_dirs t_dirs;
 typedef struct	s_all t_all;
+
+typedef struct	s_off
+{
+	int	link;
+	int	uid;
+	int	gid;
+	int	size;
+}				t_off;
 
 typedef struct	s_op
 {
@@ -52,6 +60,7 @@ typedef struct	s_dirs
 {
 	char	*name;
 	int		file;
+	t_lsl	*lsl;
 	t_dirs	*next;
 }				t_dirs;
 
@@ -81,7 +90,11 @@ void	time_stamp_sort(t_all *a, t_op *ops);
 void	ft_core_sorting(t_all *all, t_op *ops);
 
 //FILE PRINT
+void	ft_print_file(t_op *ops, t_lsl *lsl, char *file_name, t_off *off);
 
+//OFF MACROS
+void	ft_init_off(t_off *off);
+void	ft_fill_off(t_off *off, t_dirs *dirs);
 
 //GET OFFSET
 int		get_nlink_off(nlink_t links);
@@ -94,7 +107,7 @@ void	ft_put_gid(gid_t gid, int offset);
 void	ft_put_size(size_t size, int offset);
 void	ft_put_st_nlinks(nlink_t links, int offset);
 void	ft_put_uid(uid_t uid, int offset);
-void	ft_put_modtime(struct stat ss);
+void	ft_put_modtime(struct timespec st_mtimespec);
 void	ft_put_st_mode(mode_t mode);
 void	ft_put_restrict(mode_t mode);
 
@@ -108,6 +121,7 @@ t_all	*ft_new_fina_next(t_all *a, char *file_name, char *path);
 
 //LSL MACROS
 t_all	*ft_get_lsl(t_all* all, char *path);
+void	ft_file_lsl(t_lsl *dirs, char *name);
 
 //CORE
 t_op	*ft_get_options(char **argv, int argc, t_op *ops);
@@ -126,7 +140,7 @@ t_op	*ft_init_ops(t_op *ops);
 t_op	*ft_check_ops(char c, t_op *ops);
 
 //DIRS MACROS
-t_dirs	*ft_new_name_end(t_dirs *dirs, char	*str);
+t_dirs	*ft_new_na_next(t_dirs *dirs, char *name);
 t_dirs	*ft_del_curr(t_dirs *prev, t_dirs *curr);
 t_dirs	*ft_new_napa_next(t_dirs *dirs, char *name);
 

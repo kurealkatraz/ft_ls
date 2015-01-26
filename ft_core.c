@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/06 11:52:25 by nowl              #+#    #+#             */
-/*   Updated: 2015/01/23 11:24:30 by mgras            ###   ########.fr       */
+/*   Updated: 2015/01/26 17:11:15 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ t_dirs	*ft_get_dirs(char **argv, int argc, t_dirs *dirs)
 	}
 	save = dirs;
 	while (ts < argc && argv[ts])
-		ft_new_napa_next(save, argv[ts++]);
+		save = ft_new_na_next(save, argv[ts++]);
 	return (dirs);
 }
 
@@ -48,7 +48,7 @@ void	ft_test_usr_dirs(t_dirs *dirs)
 		lstat(tmp->name, &ss);
 		if (errno == 2)
 			ft_usr_dirs_err(tmp->name);
-		if (S_ISDIR(ss.st_mode))
+		if (ss.st_mode != S_IFDIR)
 			tmp->file = 1;
 		listxattr(tmp->name, NULL, 0, XATTR_NOFOLLOW);
 		if (errno == 13)

@@ -6,28 +6,28 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/19 11:22:27 by mgras             #+#    #+#             */
-/*   Updated: 2015/01/21 11:21:03 by mgras            ###   ########.fr       */
+/*   Updated: 2015/01/26 16:21:04 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void	ft_print_isolation(struct stat ss, char *file_name, t_op *ops)
+void	ft_print_file(t_op *ops, t_lsl *lsl, char *file_name, t_off	*off)
 {
 	if (ops->l != 1)
 	{
 		ft_putstr(file_name);
-		ft_putstr("\n\n");
+		ft_putchar('\n');
 	}
 	else
 	{
-		ft_put_st_mode(ss.st_mode);
-		ft_put_restrict(ss.st_mode);
-		ft_put_st_nlinks(ss.st_nlink, get_nlink_off(ss.st_nlink));
-		ft_put_uid(ss.st_uid, get_uid_off(ss.st_uid));
-		ft_put_gid(ss.st_gid, get_gid_off(ss.st_gid));
-		ft_put_size(ss.st_size, get_size_off(ss.st_size));
-		ft_put_modtime(ss);
+		ft_put_st_mode(lsl->mode);
+		ft_put_restrict(lsl->mode);
+		ft_put_st_nlinks(lsl->hardlink, off->link);
+		ft_put_uid(lsl->uid, off->uid);
+		ft_put_gid(lsl->gid, off->gid);
+		ft_put_size(lsl->size, off->size);
+		ft_put_modtime(lsl->st_mtimespec);
 		ft_putstr(file_name);
 		ft_putstr("\n");
 	}
