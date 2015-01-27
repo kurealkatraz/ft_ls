@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/19 16:33:39 by mgras             #+#    #+#             */
-/*   Updated: 2015/01/26 16:15:24 by mgras            ###   ########.fr       */
+/*   Updated: 2015/01/27 11:11:48 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	ft_put_gid(gid_t gid, int offset)
 	ft_putstr(med->gr_name);
 	while (len++ < offset)
 		ft_putchar(' ');
-	ft_putstr("  ");
 }
 
 void	ft_put_size(size_t size, int offset)
@@ -38,7 +37,26 @@ void	ft_put_size(size_t size, int offset)
 
 void	ft_put_modtime(struct timespec st_mtimespec)
 {
+	char	*timestamp;
+	int		i;
 
-	if (st_mtimespec.tv_sec)
-		return;
+	timestamp = (char*)malloc(sizeof(char) * ft_strlen(ctime(&(st_mtimespec.tv_sec))));
+	ft_strcpy(timestamp, ctime(&(st_mtimespec.tv_sec)));
+	i = 0;
+	while (timestamp[i] != ' ')
+		i++;
+	i++;
+	while (timestamp[i] != ':')
+		ft_putchar(timestamp[i++]);
+	i++;
+	ft_putchar(':');
+	while (timestamp[i] != ':')
+		ft_putchar(timestamp[i++]);
+	while (timestamp[i] != ' ')
+		i++;
+	i++;
+	ft_putchar(' ');
+	while(timestamp[i] != '\n')
+		ft_putchar(timestamp[i++]);
+	ft_putchar(' ');
 }

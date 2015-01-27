@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/19 11:56:55 by mgras             #+#    #+#             */
-/*   Updated: 2015/01/26 17:33:25 by mgras            ###   ########.fr       */
+/*   Updated: 2015/01/27 10:38:29 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ void	ft_put_restrict(mode_t mode)
 	ft_putchar(mode & S_IROTH ? 'r' : '-');
 	ft_putchar(mode & S_IWOTH ? 'w' : '-');
 	ft_putchar(mode & S_IXOTH ? 'x' : '-');
-	ft_putstr("  ");
+	ft_putchar(' ');
 }
 
 void	ft_put_st_nlinks(nlink_t links, int offset)
@@ -66,5 +66,4 @@ void	ft_put_uid(uid_t uid, int offset)
 	ft_putstr(med->pw_name);
 	while (len++ < offset)
 		ft_putchar(' ');
-	ft_putstr("  ");
 }

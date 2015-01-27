@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/06 17:36:16 by nowl              #+#    #+#             */
-/*   Updated: 2015/01/26 16:56:53 by mgras            ###   ########.fr       */
+/*   Updated: 2015/01/27 10:02:20 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,43 @@ t_dirs	*ft_new_napa_next(t_dirs *dirs, char *name)
 	return (new_dirs);
 }
 
-t_dirs	*ft_del_curr(t_dirs *prev, t_dirs *curr)
+t_dirs	*ft_del_curr(t_dirs *get_prev, t_dirs *dirs)
 {
-	if (curr != NULL && curr->name != NULL)
-		free(curr->name);
-	prev->next = curr->next;
-	if (curr != NULL)
-		free(curr);
-	return (prev);
+	get_prev->next = dirs->next;
+	free(dirs->name);
+	if (dirs->lsl != NULL)
+		free(dirs->lsl);
+	free(dirs);
+	dirs = get_prev->next;
+	return (get_prev);
+}
+
+t_dirs	*ft_del_files(t_dirs *dirs)
+{
+	t_dirs	*get_prev;
+
+	get_prev = dirs;
+	dirs = dirs->next;
+	while (get_prev->file == 1 && dirs != NULL)
+	{
+		free(get_prev->name);
+		if (get_prev->lsl != NULL)
+			free (get_prev->lsl);
+		free (get_prev);
+		get_prev = dirs;
+		dirs = dirs->next;
+	}
+	while (dirs != NULL)
+	{
+		if (dirs->file == 1)
+			ft_del_curr(get_prev, dirs);
+		else
+		{
+			get_prev = get_prev->next;
+			dirs = dirs->next;
+		}
+	}
+	return (get_prev);
 }
 
 t_dirs	*ft_new_na_next(t_dirs *dirs, char *name)

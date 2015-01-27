@@ -6,13 +6,13 @@
 #    By: mgras <mgras@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/01/19 10:44:57 by mgras             #+#    #+#              #
-#    Updated: 2015/01/26 15:56:00 by mgras            ###   ########.fr        #
+#    Updated: 2015/01/27 11:09:02 by mgras            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = ft_ls
 
-C_FILES = ft_macro_off.c ft_mecha_swap.c ft_mecha_free.c ft_core.c ft_macro_all.c ft_macro_lsl.c ft_macro_dirs.c ft_macro_ops.c ft_mecha_init.c ft_print_error.c ft_recursive.c ft_utility.c ft_utility_2.c ft_sorting.c ft_print.c ft_putst.c ft_putst_2.c ft_get_offset.c
+C_FILES = ft_macro_off.c ft_mecha_swap.c ft_core.c ft_macro_lsl.c ft_macro_dirs.c ft_macro_ops.c ft_mecha_init.c ft_print_error.c ft_recursive.c ft_utility.c ft_utility_2.c ft_sorting.c ft_print.c ft_putst.c ft_putst_2.c ft_get_offset.c
 
 all : fclean compile
 

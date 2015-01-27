@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/06 11:58:16 by nowl              #+#    #+#             */
-/*   Updated: 2015/01/26 17:20:20 by mgras            ###   ########.fr       */
+/*   Updated: 2015/01/27 11:09:40 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,33 +64,18 @@ typedef struct	s_dirs
 	t_dirs	*next;
 }				t_dirs;
 
-typedef struct	s_all
-{
-	char		*file_name;
-	char		*path;
-	char		*full;
-	blkcnt_t	blocks;
-	t_lsl		*lsl;
-	t_all		*next;
-}				t_all;
-
-//MECHA FREE
-void	ft_free_all(t_all *all, t_dirs *dirs, t_op *ops);
 
 //MECHA SWAP
-void	ft_swap_afull(t_all *a);
-void	ft_swap_afile_name(t_all *a);
-void	ft_swap_apath(t_all *a);
-void	ft_swap_ablock(t_all *a);
-void	ft_swap_core(t_all *a, t_op *ops);
+void	ft_swap_afile_name(t_dirs *a);
+void	ft_swap_core(t_dirs *a, t_op *ops);
 
 //SORTING
-void	ft_alphasort(t_all *a, t_op *ops);
-void	time_stamp_sort(t_all *a, t_op *ops);
-void	ft_core_sorting(t_all *all, t_op *ops);
+void	ft_alphasort(t_dirs *a, t_op *ops);
+void	time_stamp_sort(t_dirs *a, t_op *ops);
+void	ft_core_sorting(t_dirs *all, t_op *ops);
 
 //FILE PRINT
-void	ft_print_file(t_op *ops, t_lsl *lsl, char *file_name, t_off *off);
+void	ft_print_file(t_op *ops, t_lsl *lsl, char *file_name, t_off	*off);
 
 //OFF MACROS
 void	ft_init_off(t_off *off);
@@ -116,10 +101,7 @@ void	ft_op_error(int index, char err);
 void	ft_usr_dirs_err(char *erred_dir);
 void	ft_forbiden_access(char *erred_dir);
 
-//ALL MACROS
-t_all	*ft_new_fina_next(t_all *a, char *file_name, char *path);
-
-//LSL MACROS
+//LCS MACROS
 t_all	*ft_get_lsl(t_all* all, char *path);
 void	ft_file_lsl(t_lsl *dirs, char *name);
 
@@ -129,10 +111,7 @@ t_dirs	*ft_get_dirs(char **argv, int argc, t_dirs *dirs);
 void	ft_test_usr_dirs(t_dirs *dirs);
 void	ft_mecha_init(t_op *ops, t_dirs *dirs);
 
-//Mecha
-void	ft_get_recursive(t_dirs *dirs);
-t_all	*ft_fetch_local(t_all *all, t_op *ops);
-void	ft_get_all(t_all *all, t_dirs *dirs, t_op *ops);
+//MECHA
 
 //OP MACROS
 t_op	*ft_get_options(char **argv, int argc, t_op *ops);
@@ -141,7 +120,8 @@ t_op	*ft_check_ops(char c, t_op *ops);
 
 //DIRS MACROS
 t_dirs	*ft_new_na_next(t_dirs *dirs, char *name);
-t_dirs	*ft_del_curr(t_dirs *prev, t_dirs *curr);
+t_dirs	*ft_del_curr(t_dirs *get_prev, t_dirs *curr);
+t_dirs	*ft_del_files(t_dirs *dirs);
 t_dirs	*ft_new_napa_next(t_dirs *dirs, char *name);
 
 //UTILITY

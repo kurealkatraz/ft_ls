@@ -6,20 +6,20 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/12 17:59:10 by mgras             #+#    #+#             */
-/*   Updated: 2015/01/23 10:57:21 by mgras            ###   ########.fr       */
+/*   Updated: 2015/01/27 10:59:07 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void	ft_alphasort(t_all *a, t_op *ops)
+void	ft_alphasort(t_dirs *a, t_op *ops)
 {
-	t_all	*save;
+	t_dirs	*save;
 
 	save = a;
 	while (a->next != NULL)
 	{
-		if (ft_strcmp(a->full, a->next->full) > 0)
+		if (ft_strcmp(a->name, a->next->name) > 0)
 		{
 			ft_swap_core(a, ops);
 			a = save;
@@ -29,9 +29,9 @@ void	ft_alphasort(t_all *a, t_op *ops)
 	}
 }
 
-void	time_stamp_sort(t_all *a, t_op *ops)
+void	time_stamp_sort(t_dirs *a, t_op *ops)
 {
-	t_all	*save;
+	t_dirs	*save;
 
 	save = a;
 	while (a->next != NULL)
@@ -46,9 +46,9 @@ void	time_stamp_sort(t_all *a, t_op *ops)
 	}
 }
 
-void	ft_core_sorting(t_all *all, t_op *ops)
+void	ft_core_sorting(t_dirs *all, t_op *ops)
 {
-	t_all	*tmp;
+	t_dirs	*tmp;
 
 	tmp = all;
 	if (ops->t == 0)
