@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/06 11:58:16 by nowl              #+#    #+#             */
-/*   Updated: 2015/01/27 11:09:40 by mgras            ###   ########.fr       */
+/*   Updated: 2015/01/28 12:38:24 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	ft_print_file(t_op *ops, t_lsl *lsl, char *file_name, t_off	*off);
 
 //OFF MACROS
 void	ft_init_off(t_off *off);
-void	ft_fill_off(t_off *off, t_dirs *dirs);
+void	ft_fill_off_file(t_off *off, t_dirs *dirs);
 
 //GET OFFSET
 int		get_nlink_off(nlink_t links);
@@ -134,5 +134,7 @@ size_t	ft_strlen(const char *s);
 int		ft_get_digit(int n);
 int		ft_strcmp(const char *s1, const char *s2);
 int		ft_check_if_dirs(t_dirs	*dirs);
+int		ft_name(char *str);
+int		ft_hidden(char *str)
 
 #endif

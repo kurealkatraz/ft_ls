@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/19 11:56:55 by mgras             #+#    #+#             */
-/*   Updated: 2015/01/27 10:38:29 by mgras            ###   ########.fr       */
+/*   Updated: 2015/01/28 11:29:56 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,16 @@
 
 void	ft_put_st_mode(mode_t mode)
 {
-	if (mode == S_IFDIR)
+	if (S_ISDIR(mode))
 		ft_putchar('d');
-	else if (mode == S_IFBLK)
+	else if (S_ISBLK(mode))
 		ft_putchar('b');
-	else if (mode == S_IFCHR)
+	else if (S_ISCHR(mode))
 		ft_putchar('c');
-	else if (mode == S_IFIFO)
+	else if (S_ISFIFO(mode))
 		ft_putchar('p');
-	else if (mode == S_IFLNK)
+	else if (S_ISLNK(mode))
 		ft_putchar('l');
-	else if (mode == S_IFMT)
-		ft_putchar('s');
 	else
 		ft_putchar('-');
 }

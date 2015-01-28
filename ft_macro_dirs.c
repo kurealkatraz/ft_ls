@@ -6,21 +6,31 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/06 17:36:16 by nowl              #+#    #+#             */
-/*   Updated: 2015/01/27 10:02:20 by mgras            ###   ########.fr       */
+/*   Updated: 2015/01/28 13:00:35 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-t_dirs	*ft_new_napa_next(t_dirs *dirs, char *name)
+t_dirs	*ft_init_napa_chain(char *file_name, char *path_name)
 {
 	t_dirs	*new_dirs;
 
 	new_dirs = (t_dirs*)malloc(sizeof(t_dirs));
-	new_dirs->name = (char*)malloc(sizeof(char) * (ft_strlen(dirs->name) + ft_strlen(name)) + 2);
-	new_dirs->name = ft_strclip(dirs->name, name, new_dirs->name);
+	new_dirs->name = (char*)malloc(sizeof(char) * (ft_strlen(file_name) + ft_strlen(path_name)) + 2);
+	new_dirs->name = ft_strclip(path_name, file_name, new_dirs->name);
 	new_dirs->next = NULL;
-	new_dirs->file = 0;
+	return(new_dirs);
+}
+
+t_dirs	*ft_new_napa_next(t_dirs *dirs, char *file_name, char *path_name)
+{
+	t_dirs	*new_dirs;
+
+	new_dirs = (t_dirs*)malloc(sizeof(t_dirs));
+	new_dirs->name = (char*)malloc(sizeof(char) * (ft_strlen(file_name) + ft_strlen(path_name)) + 2);
+	new_dirs->name = ft_strclip(path_name, file_name, new_dirs->name);
+	new_dirs->next = NULL;
 	dirs->next = new_dirs;
 	return (new_dirs);
 }
@@ -33,7 +43,7 @@ t_dirs	*ft_del_curr(t_dirs *get_prev, t_dirs *dirs)
 		free(dirs->lsl);
 	free(dirs);
 	dirs = get_prev->next;
-	return (get_prev);
+	return (dirs);
 }
 
 t_dirs	*ft_del_files(t_dirs *dirs)
@@ -54,7 +64,7 @@ t_dirs	*ft_del_files(t_dirs *dirs)
 	while (dirs != NULL)
 	{
 		if (dirs->file == 1)
-			ft_del_curr(get_prev, dirs);
+			dirs = ft_del_curr(get_prev, dirs);
 		else
 		{
 			get_prev = get_prev->next;

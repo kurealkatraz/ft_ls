@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/06 11:52:25 by nowl              #+#    #+#             */
-/*   Updated: 2015/01/26 17:11:15 by mgras            ###   ########.fr       */
+/*   Updated: 2015/01/28 11:17:53 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,9 @@ void	ft_test_usr_dirs(t_dirs *dirs)
 		lstat(tmp->name, &ss);
 		if (errno == 2)
 			ft_usr_dirs_err(tmp->name);
-		if (ss.st_mode != S_IFDIR)
+		if (S_ISDIR(ss.st_mode))
+			tmp->file = 0;
+		else
 			tmp->file = 1;
 		listxattr(tmp->name, NULL, 0, XATTR_NOFOLLOW);
 		if (errno == 13)
