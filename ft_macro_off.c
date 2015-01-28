@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/26 15:53:43 by mgras             #+#    #+#             */
-/*   Updated: 2015/01/28 11:48:24 by mgras            ###   ########.fr       */
+/*   Updated: 2015/01/28 16:04:39 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,25 @@ void	ft_fill_off_file(t_off *off, t_dirs *dirs)
 			if (off->size < get_size_off(tmp->lsl->size))
 				off->size = get_size_off(tmp->lsl->size);
 		}
+		tmp = tmp->next;
+	}
+}
+
+void	ft_fill_off_all(t_off *off, t_dirs *dirs)
+{
+	t_dirs	*tmp;
+
+	tmp = dirs;
+	while(tmp != NULL)
+	{
+		if (off->link < get_nlink_off(tmp->lsl->hardlink))
+			off->link = get_nlink_off(tmp->lsl->hardlink);
+		if (off->uid < get_uid_off(tmp->lsl->uid))
+			off->uid = get_uid_off(tmp->lsl->uid);
+		if (off->gid < get_gid_off(tmp->lsl->gid))
+			off->gid = get_gid_off(tmp->lsl->gid);
+		if (off->size < get_size_off(tmp->lsl->size))
+			off->size = get_size_off(tmp->lsl->size);
 		tmp = tmp->next;
 	}
 }

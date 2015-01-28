@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/06 11:58:16 by nowl              #+#    #+#             */
-/*   Updated: 2015/01/28 12:38:24 by mgras            ###   ########.fr       */
+/*   Updated: 2015/01/28 17:41:21 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,12 @@ void	ft_core_sorting(t_dirs *all, t_op *ops);
 
 //FILE PRINT
 void	ft_print_file(t_op *ops, t_lsl *lsl, char *file_name, t_off	*off);
+void	ft_print_head(char *head);
 
 //OFF MACROS
 void	ft_init_off(t_off *off);
 void	ft_fill_off_file(t_off *off, t_dirs *dirs);
+void	ft_fill_off_all(t_off *off, t_dirs *dirs);
 
 //GET OFFSET
 int		get_nlink_off(nlink_t links);
@@ -119,10 +121,11 @@ t_op	*ft_init_ops(t_op *ops);
 t_op	*ft_check_ops(char c, t_op *ops);
 
 //DIRS MACROS
+t_dirs	*ft_init_napa_chain(char *file_name, char *path_name);
+t_dirs	*ft_new_napa_next(t_dirs *dirs, char *file_name, char *path_name);
+t_dirs	*ft_del_curr(t_dirs *get_prev, t_dirs *dirs);
+t_dirs	*ft_del_files(t_dirs *get_prev, t_dirs *dirs)
 t_dirs	*ft_new_na_next(t_dirs *dirs, char *name);
-t_dirs	*ft_del_curr(t_dirs *get_prev, t_dirs *curr);
-t_dirs	*ft_del_files(t_dirs *dirs);
-t_dirs	*ft_new_napa_next(t_dirs *dirs, char *name);
 
 //UTILITY
 char	*ft_strclip(char *path, char *name, char *new_dirs);
@@ -135,6 +138,8 @@ int		ft_get_digit(int n);
 int		ft_strcmp(const char *s1, const char *s2);
 int		ft_check_if_dirs(t_dirs	*dirs);
 int		ft_name(char *str);
-int		ft_hidden(char *str)
+int		ft_hidden(char *str);
+char	*ft_end(char *str);
+void	ft_set_file(t_dirs *dirs, const char type);
 
 #endif
