@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/28 12:37:47 by mgras             #+#    #+#             */
-/*   Updated: 2015/01/28 17:35:49 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/02 13:30:31 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ int		ft_name(char *str)
 	return (0);
 }
 
-void	ft_set_file(t_dirs *dirs, const char type)
+void	ft_set_file(t_dirs *dirs)
 {
-	if (type == DT_DIR)
+	if (S_ISDIR(dirs->lsl->mode))
 		dirs->file = 0;
-	if (ft_name(ft_end(dirs->name)) == 1)
+	else
 		dirs->file = 1;
-	if (type != DT_DIR)
+	if ((ft_name(ft_end(dirs->name))) == 1)
 		dirs->file = 1;
 }
 

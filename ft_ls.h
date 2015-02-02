@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/06 11:58:16 by nowl              #+#    #+#             */
-/*   Updated: 2015/01/28 17:41:21 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/02 17:32:54 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,11 +120,16 @@ t_op	*ft_get_options(char **argv, int argc, t_op *ops);
 t_op	*ft_init_ops(t_op *ops);
 t_op	*ft_check_ops(char c, t_op *ops);
 
+//EXEP DELETION (GOES IN WITH THE DIRS MACROS)
+t_dirs	*ft_exep_top(t_dirs *prev, t_dirs *curr);
+t_dirs	*ft_exep_mid(t_dirs *prev, t_dirs *curr);
+t_dirs	*ft_exep_end(t_dirs *prev, t_dirs *curr);
+
 //DIRS MACROS
 t_dirs	*ft_init_napa_chain(char *file_name, char *path_name);
 t_dirs	*ft_new_napa_next(t_dirs *dirs, char *file_name, char *path_name);
-t_dirs	*ft_del_curr(t_dirs *get_prev, t_dirs *dirs);
-t_dirs	*ft_del_files(t_dirs *get_prev, t_dirs *dirs)
+void	ft_del_curr(t_dirs *dirs);
+t_dirs	*ft_del_files(t_dirs *get_prev, t_dirs *dirs);
 t_dirs	*ft_new_na_next(t_dirs *dirs, char *name);
 
 //UTILITY
@@ -140,6 +145,5 @@ int		ft_check_if_dirs(t_dirs	*dirs);
 int		ft_name(char *str);
 int		ft_hidden(char *str);
 char	*ft_end(char *str);
-void	ft_set_file(t_dirs *dirs, const char type);
-
+void	ft_set_file(t_dirs *dirs);
 #endif

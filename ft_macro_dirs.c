@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/06 17:36:16 by nowl              #+#    #+#             */
-/*   Updated: 2015/01/28 18:07:47 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/02 18:23:06 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,20 +35,12 @@ t_dirs	*ft_new_napa_next(t_dirs *dirs, char *file_name, char *path_name)
 	return (new_dirs);
 }
 
-t_dirs	*ft_del_curr(t_dirs *get_prev, t_dirs *dirs)
+void	ft_del_curr(t_dirs *dirs)
 {
-	get_prev->next = dirs->next;
 	free(dirs->name);
 	if (dirs->lsl != NULL)
 		free(dirs->lsl);
 	free(dirs);
-	dirs = get_prev->next;
-	return (dirs);
-}
-
-t_dirs	*ft_del_files(t_dirs *get_prev, t_dirs *dirs)
-{
-	## TO DO ##
 }
 
 t_dirs	*ft_new_na_next(t_dirs *dirs, char *name)

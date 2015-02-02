@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/19 11:22:27 by mgras             #+#    #+#             */
-/*   Updated: 2015/01/28 16:59:47 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/02 18:27:17 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 
 void	ft_print_file(t_op *ops, t_lsl *lsl, char *file_name, t_off	*off)
 {
-	if (ops->l != 1)
-		ft_putstr(file_name);
-	else
+	if (ops->l == 1)
 	{
 		ft_put_st_mode(lsl->mode);
 		ft_put_restrict(lsl->mode);
@@ -25,8 +23,8 @@ void	ft_print_file(t_op *ops, t_lsl *lsl, char *file_name, t_off	*off)
 		ft_put_gid(lsl->gid, off->gid);
 		ft_put_size(lsl->size, off->size);
 		ft_put_modtime(lsl->st_mtimespec);
-		ft_putstr(file_name);
 	}
+	ft_putstr(file_name);
 	ft_putchar('\n');
 }
 
