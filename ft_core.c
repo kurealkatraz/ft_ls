@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/06 11:52:25 by nowl              #+#    #+#             */
-/*   Updated: 2015/01/28 11:17:53 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/03 12:12:37 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,20 @@ void	ft_test_usr_dirs(t_dirs *dirs)
 	while (tmp != NULL)
 	{
 		lstat(tmp->name, &ss);
-		if (errno == 2)
-			ft_usr_dirs_err(tmp->name);
 		if (S_ISDIR(ss.st_mode))
 			tmp->file = 0;
 		else
 			tmp->file = 1;
+		if (errno == 2)
+		{
+			ft_usr_dirs_err(tmp->name);
+			tmp->file = 2;
+		}
 		listxattr(tmp->name, NULL, 0, XATTR_NOFOLLOW);
 		if (errno == 13)
 			ft_forbiden_access(tmp->name);
 		tmp = tmp->next;
+		errno = 0;
 	}
 }
 
@@ -98,12 +102,9 @@ int		main(int argc, char **argv)
 		free(dirs);
 		return (0);
 	}
-	if (argc > 1)
-	{
-		dirs = ft_get_dirs(argv, argc, dirs);
-		if (dirs->name != NULL)
-			ft_test_usr_dirs(dirs);
-	}
+	dirs = ft_get_dirs(argv, argc, dirs);
+	if (dirs->name != NULL)
+		ft_test_usr_dirs(dirs);
 	ft_mecha_init(ops, dirs);
 	return (0);
 }

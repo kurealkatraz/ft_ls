@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/22 15:32:10 by mgras             #+#    #+#             */
-/*   Updated: 2015/01/28 11:47:22 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/03 17:21:44 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_swap_afile_name(t_dirs *a)
 {
 	char	*str_swap;
 
-	str_swap = (char*)malloc(sizeof(char) * ft_strlen(a->name)+ 1);
+	str_swap = (char*)malloc(sizeof(char) * ft_strlen(a->name) + 1);
 	ft_strcpy(str_swap, a->name);
 	free(a->name);
 	a->name = (char*)malloc(sizeof(char) * ft_strlen(a->next->name) + 1);

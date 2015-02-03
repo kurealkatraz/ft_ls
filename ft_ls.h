@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/06 11:58:16 by nowl              #+#    #+#             */
-/*   Updated: 2015/02/02 17:32:54 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/03 17:14:17 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct	s_op
 
 typedef struct	s_lsl
 {
+	int				block;
 	mode_t			mode;
 	nlink_t			hardlink;
 	uid_t			uid;
@@ -75,8 +76,12 @@ void	time_stamp_sort(t_dirs *a, t_op *ops);
 void	ft_core_sorting(t_dirs *all, t_op *ops);
 
 //FILE PRINT
-void	ft_print_file(t_op *ops, t_lsl *lsl, char *file_name, t_off	*off);
-void	ft_print_head(char *head);
+void	ft_print_file(t_op *ops, t_lsl *lsl, t_dirs *dirs, t_off *off);
+void	ft_print_head(char *head, t_dirs *dirs, t_op *ops);
+
+//SOLO MACRO
+t_dirs	*ft_solo_inst(t_dirs *dirs, t_op *ops, t_off *off);
+void	ft_solo_init(t_dirs *dirs, t_op *ops);
 
 //OFF MACROS
 void	ft_init_off(t_off *off);
@@ -102,6 +107,7 @@ void	ft_put_restrict(mode_t mode);
 void	ft_op_error(int index, char err);
 void	ft_usr_dirs_err(char *erred_dir);
 void	ft_forbiden_access(char *erred_dir);
+void	ft_error_head(t_dirs *dirs);
 
 //LCS MACROS
 t_all	*ft_get_lsl(t_all* all, char *path);
@@ -113,17 +119,16 @@ t_dirs	*ft_get_dirs(char **argv, int argc, t_dirs *dirs);
 void	ft_test_usr_dirs(t_dirs *dirs);
 void	ft_mecha_init(t_op *ops, t_dirs *dirs);
 
-//MECHA
-
 //OP MACROS
 t_op	*ft_get_options(char **argv, int argc, t_op *ops);
 t_op	*ft_init_ops(t_op *ops);
 t_op	*ft_check_ops(char c, t_op *ops);
 
-//EXEP DELETION (GOES IN WITH THE DIRS MACROS)
-t_dirs	*ft_exep_top(t_dirs *prev, t_dirs *curr);
-t_dirs	*ft_exep_mid(t_dirs *prev, t_dirs *curr);
-t_dirs	*ft_exep_end(t_dirs *prev, t_dirs *curr);
+//R MACROS (GOES SOMEHOW WITH THE DIRS MACROS)
+t_dirs	*ft_crea_inst(char *na, char *pa, t_dirs *ins);
+void	ft_process_inst(t_dirs *ins, t_op *ops);
+t_dirs	*ft_process_r(t_dirs *dirs, t_dirs *nins, t_dirs *save, t_op *ops);
+void	ft_get_recursive(t_dirs *dirs, t_op *ops);
 
 //DIRS MACROS
 t_dirs	*ft_init_napa_chain(char *file_name, char *path_name);
@@ -146,4 +151,6 @@ int		ft_name(char *str);
 int		ft_hidden(char *str);
 char	*ft_end(char *str);
 void	ft_set_file(t_dirs *dirs);
+void	ft_blank_out(char *str, int size);
+
 #endif

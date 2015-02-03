@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/20 15:21:42 by mgras             #+#    #+#             */
-/*   Updated: 2015/01/27 10:41:41 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/03 17:08:35 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		get_uid_off(uid_t uid)
 	if (med != NULL)
 		offset = ft_strlen(med->pw_name);
 	else
-		offset = ft_get_digit(uid);
+		offset = ft_get_digit((int)uid);
 	return (offset + 2);
 }
 
@@ -39,7 +39,10 @@ int		get_gid_off(gid_t gid)
 	int				offset;
 
 	med = getgrgid(gid);
-	offset = ft_strlen(med->gr_name);
+	if (med != NULL)
+		offset = ft_strlen(med->gr_name);
+	else
+		offset = ft_get_digit((int)gid);
 	return (offset + 1);
 }
 

@@ -6,13 +6,13 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/19 12:34:49 by mgras             #+#    #+#             */
-/*   Updated: 2015/01/28 16:03:05 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/03 17:20:04 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int		ft_check_if_dirs(t_dirs	*dirs)
+int		ft_check_if_dirs(t_dirs *dirs)
 {
 	while (dirs->next != NULL)
 	{
@@ -42,8 +42,8 @@ int		ft_get_digit(int n)
 {
 	int		count;
 
-	count  = 0;
-	while (n > 10)
+	count = 1;
+	while (n >= 10)
 	{
 		n = n / 10;
 		count++;

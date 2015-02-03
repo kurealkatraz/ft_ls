@@ -6,14 +6,18 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/19 11:22:27 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/02 18:27:17 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/03 16:53:48 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-void	ft_print_file(t_op *ops, t_lsl *lsl, char *file_name, t_off	*off)
+void	ft_print_file(t_op *ops, t_lsl *lsl, t_dirs *dirs, t_off *off)
 {
+	char	buff[256];
+	t_dirs	*d_tmp;
+
+	d_tmp = dirs;
 	if (ops->l == 1)
 	{
 		ft_put_st_mode(lsl->mode);
@@ -24,14 +28,37 @@ void	ft_print_file(t_op *ops, t_lsl *lsl, char *file_name, t_off	*off)
 		ft_put_size(lsl->size, off->size);
 		ft_put_modtime(lsl->st_mtimespec);
 	}
-	ft_putstr(file_name);
+	ft_putstr(ft_end(d_tmp->name));
+	if (S_ISLNK(lsl->mode) && ops->l == 1)
+	{
+		ft_blank_out(buff, 256);
+		ft_putstr(" -> ");
+		readlink(d_tmp->name, buff, 256);
+		ft_putstr(buff);
+	}
 	ft_putchar('\n');
 }
 
-void	ft_print_head(char *head)
+void	ft_print_head(char *head, t_dirs *dirs, t_op *ops)
 {
+	int		total;
+	t_dirs	*d_tmp;
+
+	d_tmp = dirs;
+	total = 0;
 	ft_putchar('\n');
 	ft_putstr(head);
 	ft_putchar(':');
 	ft_putchar('\n');
+	if (ops->l == 1)
+	{
+		while (d_tmp != NULL)
+		{
+			total = total + d_tmp->lsl->block;
+			d_tmp = d_tmp->next;
+		}
+		ft_putstr("total ");
+		ft_putnbr(total);
+		ft_putchar('\n');
+	}
 }

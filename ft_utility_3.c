@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/28 12:37:47 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/02 13:30:31 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/03 17:20:47 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int		ft_name(char *str)
 	}
 	else if (ft_strlen(str) == 3)
 	{
-		if (str[0] == '.' && str[1] == '.' && str[2] == '/' && str[3] =='\0')
+		if (str[0] == '.' && str[1] == '.' && str[2] == '/' && str[3] == '\0')
 			return (1);
 	}
 	else if (ft_strlen(str) == 2)
@@ -39,12 +39,15 @@ int		ft_name(char *str)
 
 void	ft_set_file(t_dirs *dirs)
 {
-	if (S_ISDIR(dirs->lsl->mode))
-		dirs->file = 0;
-	else
-		dirs->file = 1;
-	if ((ft_name(ft_end(dirs->name))) == 1)
-		dirs->file = 1;
+	if (dirs->file != 2)
+	{
+		if (S_ISDIR(dirs->lsl->mode))
+			dirs->file = 0;
+		else
+			dirs->file = 1;
+		if ((ft_name(ft_end(dirs->name))) == 1)
+			dirs->file = 1;
+	}
 }
 
 char	*ft_end(char *str)
@@ -69,9 +72,18 @@ char	*ft_end(char *str)
 	return (end);
 }
 
+void	ft_blank_out(char *str, int size)
+{
+	int		ss;
+
+	ss = 0;
+	while (ss <= size)
+		str[ss++] = 0;
+}
+
 int		ft_hidden(char *str)
 {
 	if (str[0] == '.')
 		return (1);
-	return(0);
+	return (0);
 }

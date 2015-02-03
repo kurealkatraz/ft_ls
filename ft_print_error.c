@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/06 12:27:06 by nowl              #+#    #+#             */
-/*   Updated: 2015/01/22 19:47:46 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/03 17:11:55 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,13 @@ void	ft_forbiden_access(char *erred_dir)
 	ft_putstr("ls: ");
 	ft_putstr(erred_dir);
 	ft_putstr(": Forbiden Access\n");
+}
+
+void	ft_error_head(t_dirs *dirs)
+{
+	ft_putchar('\n');
+	ft_putstr(dirs->name);
+	ft_putchar(':');
+	ft_putchar('\n');
+	ft_forbiden_access(dirs->name);
 }

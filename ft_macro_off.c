@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/26 15:53:43 by mgras             #+#    #+#             */
-/*   Updated: 2015/01/28 16:04:39 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/03 17:22:34 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_fill_off_file(t_off *off, t_dirs *dirs)
 	t_dirs	*tmp;
 
 	tmp = dirs;
-	while(tmp != NULL)
+	while (tmp != NULL)
 	{
 		if (tmp->file == 1)
 		{
@@ -39,7 +39,7 @@ void	ft_fill_off_all(t_off *off, t_dirs *dirs)
 	t_dirs	*tmp;
 
 	tmp = dirs;
-	while(tmp != NULL)
+	while (tmp != NULL)
 	{
 		if (off->link < get_nlink_off(tmp->lsl->hardlink))
 			off->link = get_nlink_off(tmp->lsl->hardlink);

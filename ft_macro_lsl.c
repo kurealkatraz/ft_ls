@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/12 15:01:52 by mgras             #+#    #+#             */
-/*   Updated: 2015/01/27 11:05:34 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/03 17:22:05 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	ft_file_lsl(t_lsl *dirs, char *name)
 	struct stat	ss;
 
 	lstat(name, &ss);
+	dirs->block = (int)ss.st_blocks;
 	dirs->mode = ss.st_mode;
 	dirs->hardlink = ss.st_nlink;
 	dirs->uid = ss.st_uid;
