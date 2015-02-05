@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/06 11:58:16 by nowl              #+#    #+#             */
-/*   Updated: 2015/02/03 17:14:17 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/05 14:50:12 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,11 @@ void	ft_core_sorting(t_dirs *all, t_op *ops);
 //FILE PRINT
 void	ft_print_file(t_op *ops, t_lsl *lsl, t_dirs *dirs, t_off *off);
 void	ft_print_head(char *head, t_dirs *dirs, t_op *ops);
+void	ft_print_total(t_dirs *dirs);
 
 //SOLO MACRO
 t_dirs	*ft_solo_inst(t_dirs *dirs, t_op *ops, t_off *off);
-void	ft_solo_init(t_dirs *dirs, t_op *ops);
+t_dirs	*ft_solo_init(t_dirs *dirs, t_op *ops, int head);
 
 //OFF MACROS
 void	ft_init_off(t_off *off);
@@ -108,6 +109,7 @@ void	ft_op_error(int index, char err);
 void	ft_usr_dirs_err(char *erred_dir);
 void	ft_forbiden_access(char *erred_dir);
 void	ft_error_head(t_dirs *dirs);
+void	ft_cycle_errors(t_dirs *dirs, int head);
 
 //LCS MACROS
 t_all	*ft_get_lsl(t_all* all, char *path);

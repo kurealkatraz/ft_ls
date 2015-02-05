@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/19 16:33:39 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/03 17:23:42 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/05 16:14:19 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,27 @@ void	ft_put_size(size_t size, int offset)
 	ft_putchar(' ');
 }
 
+void	ft_oldfag(char *timestamp, int i)
+{
+	while (timestamp[i] != ' ')
+		i++;
+	i++;
+	while (timestamp[i] != ' ')
+		ft_putchar(timestamp[i++]);
+	ft_putchar(timestamp[i++]);
+	if (timestamp[i] == ' ')
+		ft_putchar(timestamp[i++]);
+	while (timestamp[i] != ' ')
+		ft_putchar(timestamp[i++]);
+	ft_putstr("  ");
+	i++;
+	while (timestamp[i] != ' ')
+		i++;
+	i++;
+	while (timestamp[i] != '\n')
+		ft_putchar(timestamp[i++]);
+}
+
 void	ft_put_modtime(struct timespec st_mtimespec)
 {
 	char	*timestamp;
@@ -54,17 +75,19 @@ void	ft_put_modtime(struct timespec st_mtimespec)
 		* ft_strlen(ctime(&(st_mtimespec.tv_sec))));
 	ft_strcpy(timestamp, ctime(&(st_mtimespec.tv_sec)));
 	i = 0;
-	while (timestamp[i] != ' ')
+	if (st_mtimespec.tv_sec + 15552000 >= time(NULL))
+	{
+		while (timestamp[i] != ' ')
+			i++;
 		i++;
-	i++;
-	while (timestamp[i] != ':')
-		ft_putchar(timestamp[i++]);
-	i++;
-	ft_putchar(':');
-	while (timestamp[i] != ':')
-		ft_putchar(timestamp[i++]);
-	while (timestamp[i] != ' ')
+		while (timestamp[i] != ':')
+			ft_putchar(timestamp[i++]);
 		i++;
-	i++;
+		ft_putchar(':');
+		while (timestamp[i] != ':')
+			ft_putchar(timestamp[i++]);
+	}
+	else
+		ft_oldfag(timestamp, i);
 	ft_putchar(' ');
 }

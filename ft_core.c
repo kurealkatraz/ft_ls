@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/06 11:52:25 by nowl              #+#    #+#             */
-/*   Updated: 2015/02/03 12:12:37 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/05 14:50:22 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	ft_test_usr_dirs(t_dirs *dirs)
 	struct stat		ss;
 
 	tmp = dirs;
+	errno = 0;
 	while (tmp != NULL)
 	{
 		lstat(tmp->name, &ss);
@@ -57,7 +58,7 @@ void	ft_test_usr_dirs(t_dirs *dirs)
 		}
 		listxattr(tmp->name, NULL, 0, XATTR_NOFOLLOW);
 		if (errno == 13)
-			ft_forbiden_access(tmp->name);
+			tmp->file = 3;
 		tmp = tmp->next;
 		errno = 0;
 	}

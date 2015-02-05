@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/19 11:22:27 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/03 16:53:48 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/05 14:38:16 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,21 @@ void	ft_print_head(char *head, t_dirs *dirs, t_op *ops)
 		ft_putnbr(total);
 		ft_putchar('\n');
 	}
+}
+
+void	ft_print_total(t_dirs *dirs)
+{
+	t_dirs		*d_tmp;
+	int			total;
+
+	total = 0;
+	d_tmp = dirs;
+	while (d_tmp != NULL)
+	{
+		total = total + d_tmp->lsl->block;
+		d_tmp = d_tmp->next;
+	}
+	ft_putstr("total ");
+	ft_putnbr(total);
+	ft_putchar('\n');
 }

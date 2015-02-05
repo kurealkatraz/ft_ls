@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/07 13:40:54 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/03 17:30:31 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/05 14:51:41 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,15 +94,20 @@ void	ft_disp_files(t_op *ops, t_dirs *dirs)
 void	ft_mecha_init(t_op *ops, t_dirs *dirs)
 {
 	t_dirs	*d_tmp;
+	int		head;
 
+	head = 0;
 	ft_disp_files(ops, dirs);
 	d_tmp = dirs;
 	while (d_tmp != NULL)
 	{
-		if (ft_name(d_tmp->name) == 0)
+		if (ft_name(d_tmp->name) == 0 && d_tmp->file < 2)
 			ft_set_file(d_tmp);
 		d_tmp = d_tmp->next;
 	}
+	if (dirs->next != NULL)
+		head = 1;
+	d_tmp = dirs;
 	if (ops->R == 1)
 		while (dirs != NULL)
 		{
@@ -110,12 +115,7 @@ void	ft_mecha_init(t_op *ops, t_dirs *dirs)
 			dirs = dirs->next;
 		}
 	else
-	{
 		while (dirs != NULL)
-		{
-			ft_solo_init(dirs, ops);
-			ft_putchar('\n');
-			dirs = dirs->next;
-		}
-	}
+			dirs = ft_solo_init(dirs, ops, head);
+	ft_cycle_errors(d_tmp, head);
 }

@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/03 16:52:24 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/03 17:34:12 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/05 16:12:28 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,21 +39,31 @@ t_dirs	*ft_solo_inst(t_dirs *dirs, t_op *ops, t_off *off)
 	return (nins);
 }
 
-void	ft_solo_init(t_dirs *dirs, t_op *ops)
+t_dirs	*ft_solo_init(t_dirs *dirs, t_op *ops, int head)
 {
 	t_dirs			*tmp;
 	t_off			*off;
 
-	off = (t_off*)malloc(sizeof(t_off));
-	ft_init_off(off);
-	if (dirs->file < 1)
-		tmp = ft_solo_inst(dirs, ops, off);
-	while (tmp != NULL)
+	if (dirs->file == 0)
 	{
-		if (ops->a == 1)
-			ft_print_file(ops, tmp->lsl, tmp, off);
-		else if (ft_hidden(ft_end(tmp->name)) == 0)
-			ft_print_file(ops, tmp->lsl, tmp, off);
-		tmp = tmp->next;
+		off = (t_off*)malloc(sizeof(t_off));
+		ft_init_off(off);
+		if (dirs->file < 1)
+			tmp = ft_solo_inst(dirs, ops, off);
+		if (head == 1)
+			ft_print_head(dirs->name, tmp, ops);
+		else if (ops->l == 1)
+			ft_print_total(tmp);
+		while (tmp != NULL)
+		{
+			if (ops->a == 1)
+				ft_print_file(ops, tmp->lsl, tmp, off);
+			else if (ft_hidden(ft_end(tmp->name)) == 0)
+				ft_print_file(ops, tmp->lsl, tmp, off);
+			tmp = tmp->next;
+		}
+		if (head == 0)
+			ft_putchar('\n');
 	}
+	return (dirs->next);
 }
