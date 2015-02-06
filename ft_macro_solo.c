@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/03 16:52:24 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/05 16:12:28 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/06 15:39:37 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,6 @@ t_dirs	*ft_solo_init(t_dirs *dirs, t_op *ops, int head)
 				ft_print_file(ops, tmp->lsl, tmp, off);
 			tmp = tmp->next;
 		}
-		if (head == 0)
-			ft_putchar('\n');
 	}
 	return (dirs->next);
 }

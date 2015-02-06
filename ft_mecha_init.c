@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/07 13:40:54 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/05 14:51:41 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/06 15:57:48 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_dirs	*ft_process_r(t_dirs *dirs, t_dirs *nins, t_dirs *save, t_op *ops)
 			save = save->next;
 		}
 	}
-	else if (cont == NULL && dirs->file != 2)
+	else if (cont == NULL && dirs->file != 2 && dirs->file != 1)
 		ft_error_head(dirs);
 	return (save);
 }
@@ -60,9 +60,10 @@ void	ft_get_recursive(t_dirs *dirs, t_op *ops)
 		save = NULL;
 		save = ft_process_r(dirs, new_instance, save, ops);
 	}
+	ft_free_all(new_instance);
 }
 
-void	ft_disp_files(t_op *ops, t_dirs *dirs)
+void	ft_disp_files(t_op *ops, t_dirs *dirs, t_dirs *last)
 {
 	t_off	*off;
 	t_dirs	*d_tmp;
@@ -78,17 +79,17 @@ void	ft_disp_files(t_op *ops, t_dirs *dirs)
 	}
 	while (dirs != NULL)
 	{
-		if (dirs->file == 1)
-		{
-			if (off->link == 0)
-				ft_core_sorting(dirs, ops);
-			if (off->link == 0)
-				ft_fill_off_file(off, dirs);
+		if (off->link == 0)
+			ft_core_sorting(dirs, ops);
+		if (off->link == 0)
+			ft_fill_off_file(off, dirs);
+		if (dirs->file == 1 && ops->a == 1)
 			ft_print_file(ops, dirs->lsl, dirs, off);
-		}
+		else if (dirs->file == 1 && ft_hidden(dirs->name) == 0)
+			ft_print_file(ops, dirs->lsl, dirs, off);
 		dirs = dirs->next;
 	}
-	free(off);
+	ft_dat_backn(off, last);
 }
 
 void	ft_mecha_init(t_op *ops, t_dirs *dirs)
@@ -97,7 +98,7 @@ void	ft_mecha_init(t_op *ops, t_dirs *dirs)
 	int		head;
 
 	head = 0;
-	ft_disp_files(ops, dirs);
+	ft_disp_files(ops, dirs, dirs);
 	d_tmp = dirs;
 	while (d_tmp != NULL)
 	{

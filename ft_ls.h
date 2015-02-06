@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/06 11:58:16 by nowl              #+#    #+#             */
-/*   Updated: 2015/02/05 14:50:12 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/06 16:16:40 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ typedef struct	s_op
 typedef struct	s_lsl
 {
 	int				block;
+	int				major;
+	int				minor;
 	mode_t			mode;
 	nlink_t			hardlink;
 	uid_t			uid;
@@ -94,6 +96,7 @@ int		get_nlink_off(nlink_t links);
 int		get_uid_off(uid_t uid);
 int		get_gid_off(gid_t gid);
 int		get_size_off(size_t size);
+int		get_dev_off(t_lsl *lsl);
 
 //PUTST
 void	ft_put_gid(gid_t gid, int offset);
@@ -103,6 +106,7 @@ void	ft_put_uid(uid_t uid, int offset);
 void	ft_put_modtime(struct timespec st_mtimespec);
 void	ft_put_st_mode(mode_t mode);
 void	ft_put_restrict(mode_t mode);
+void	ft_put_st_dev(int major, int minor, int offset);
 
 //ERROR PRINT
 void	ft_op_error(int index, char err);
@@ -145,6 +149,7 @@ char	*ft_strcpy(char *dest, const char *src);
 void	ft_putstr(char *str);
 void	ft_putchar(char c);
 void	ft_putnbr(int n);
+void	ft_free_all(t_dirs *ins);
 size_t	ft_strlen(const char *s);
 int		ft_get_digit(int n);
 int		ft_strcmp(const char *s1, const char *s2);
@@ -153,6 +158,10 @@ int		ft_name(char *str);
 int		ft_hidden(char *str);
 char	*ft_end(char *str);
 void	ft_set_file(t_dirs *dirs);
-void	ft_blank_out(char *str, int size);
+int		ft_blank_out(char *str, int size);
+int		ft_search_err(t_dirs *dirs);
+void	ft_dat_backn(t_off *off, t_dirs *dirs);
+void	ft_putchar_err(char c);
+void	ft_putstr_fd(char *str);
 
 #endif

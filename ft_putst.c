@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/19 11:56:55 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/03 12:32:25 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/06 14:35:49 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,21 @@ void	ft_put_uid(uid_t uid, int offset)
 		while (len++ < offset)
 			ft_putchar(' ');
 	}
+}
+
+void	ft_put_st_dev(int major, int minor, int offset)
+{
+	int		majoff;
+	int		minoff;
+
+	majoff = ft_get_digit(major);
+	minoff = ft_get_digit(minor);
+	while (majoff++ < ((offset - 1) / 2))
+		ft_putchar(' ');
+	ft_putnbr(major);
+	ft_putchar(',');
+	while (minoff++ < ((offset - 1) / 2))
+		ft_putchar(' ');
+	ft_putnbr(minor);
+	ft_putchar(' ');
 }

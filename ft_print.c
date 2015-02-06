@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/19 11:22:27 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/05 14:38:16 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/06 15:32:09 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,15 @@ void	ft_print_file(t_op *ops, t_lsl *lsl, t_dirs *dirs, t_off *off)
 		ft_put_st_nlinks(lsl->hardlink, off->link);
 		ft_put_uid(lsl->uid, off->uid);
 		ft_put_gid(lsl->gid, off->gid);
-		ft_put_size(lsl->size, off->size);
+		if (S_ISBLK(lsl->mode) || S_ISCHR(lsl->mode))
+			ft_put_st_dev(lsl->major, lsl->minor, off->size);
+		else
+			ft_put_size(lsl->size, off->size);
 		ft_put_modtime(lsl->st_mtimespec);
 	}
 	ft_putstr(ft_end(d_tmp->name));
-	if (S_ISLNK(lsl->mode) && ops->l == 1)
+	if (S_ISLNK(lsl->mode) && ops->l == 1 && ft_blank_out(buff, 256) == 0)
 	{
-		ft_blank_out(buff, 256);
 		ft_putstr(" -> ");
 		readlink(d_tmp->name, buff, 256);
 		ft_putstr(buff);
@@ -41,12 +43,15 @@ void	ft_print_file(t_op *ops, t_lsl *lsl, t_dirs *dirs, t_off *off)
 
 void	ft_print_head(char *head, t_dirs *dirs, t_op *ops)
 {
-	int		total;
-	t_dirs	*d_tmp;
+	int			total;
+	static int	first;
+	t_dirs		*d_tmp;
 
 	d_tmp = dirs;
 	total = 0;
-	ft_putchar('\n');
+	if (first != 0)
+		ft_putchar('\n');
+	first++;
 	ft_putstr(head);
 	ft_putchar(':');
 	ft_putchar('\n');

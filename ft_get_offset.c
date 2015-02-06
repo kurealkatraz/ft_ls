@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/20 15:21:42 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/03 17:08:35 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/06 16:00:41 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,15 @@ int		get_size_off(size_t size)
 
 	offset = ft_get_digit((int)size);
 	return (offset + 1);
+}
+
+int		get_dev_off(t_lsl *lsl)
+{
+	int		size;
+
+	size = ft_get_digit(lsl->major);
+	size = size + ft_get_digit(lsl->minor);
+	if (size < 9)
+		size = 9;
+	return (size);
 }

@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/28 12:37:47 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/03 17:20:47 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/06 15:18:55 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,10 @@ char	*ft_end(char *str)
 	str_e = 0;
 	while (str[str_s])
 		str_s++;
-	while (str[str_s] != '/')
+	while (str[str_s] != '/' && str_s >= 0)
 		str_s--;
+	if (str_s == 0)
+		return (str);
 	endlen = ft_strlen(str) - str_s;
 	end = (char*)malloc((sizeof(char) * (1 + endlen)));
 	str_s++;
@@ -72,13 +74,14 @@ char	*ft_end(char *str)
 	return (end);
 }
 
-void	ft_blank_out(char *str, int size)
+int		ft_blank_out(char *str, int size)
 {
 	int		ss;
 
 	ss = 0;
 	while (ss <= size)
 		str[ss++] = 0;
+	return (0);
 }
 
 int		ft_hidden(char *str)
