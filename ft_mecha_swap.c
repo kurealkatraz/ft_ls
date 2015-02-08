@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/22 15:32:10 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/03 17:21:44 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/08 16:28:21 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ft_swap_afile_name(t_dirs *a)
 	free(str_swap);
 }
 
-void	ft_swap_core(t_dirs *a, t_op *ops)
+void	ft_swap_core(t_dirs *a)
 {
 	t_lsl	*tmp;
 	int		f_tmp;
@@ -36,10 +36,7 @@ void	ft_swap_core(t_dirs *a, t_op *ops)
 	f_tmp = a->file;
 	a->file = a->next->file;
 	a->next->file = f_tmp;
-	if (ops->l == 1 || ops->t == 1)
-	{
-		tmp = a->lsl;
-		a->lsl = a->next->lsl;
-		a->next->lsl = tmp;
-	}
+	tmp = a->lsl;
+	a->lsl = a->next->lsl;
+	a->next->lsl = tmp;
 }

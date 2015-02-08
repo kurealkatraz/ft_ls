@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/07 13:40:54 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/06 15:57:48 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/08 19:22:06 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ void	ft_mecha_init(t_op *ops, t_dirs *dirs)
 	if (dirs->next != NULL)
 		head = 1;
 	d_tmp = dirs;
-	if (ops->R == 1)
+	if (ops->rr == 1)
 		while (dirs != NULL)
 		{
 			ft_get_recursive(dirs, ops);

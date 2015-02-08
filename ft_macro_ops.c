@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/06 12:22:45 by nowl              #+#    #+#             */
-/*   Updated: 2015/01/19 13:23:11 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/08 19:23:27 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_op	*ft_init_ops(t_op *ops)
 	ops->l = 0;
 	ops->t = 0;
 	ops->r = 0;
-	ops->R = 0;
+	ops->rr = 0;
 	ops->err = 0;
 	return (ops);
 }
@@ -35,7 +35,7 @@ t_op	*ft_check_ops(char c, t_op *ops)
 	if (c == 'a')
 		ops->a = 1;
 	if (c == 'R')
-		ops->R = 1;
+		ops->rr = 1;
 	if (c == 'r')
 		ops->r = 1;
 	if (c == 'l')
