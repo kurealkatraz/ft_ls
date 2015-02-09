@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/03 11:08:26 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/03 17:18:17 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/09 10:47:30 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_process_inst(t_dirs *ins, t_op *ops)
 	d_tmp = ins;
 	off = (t_off*)malloc(sizeof(t_off));
 	ft_init_off(off);
-	ft_fill_off_all(off, d_tmp);
+	ft_fill_off_all(off, d_tmp, ops);
 	ft_core_sorting(d_tmp, ops);
 	while (d_tmp != NULL)
 	{

@@ -6,7 +6,7 @@
 #    By: mgras <mgras@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/01/19 10:44:57 by mgras             #+#    #+#              #
-#    Updated: 2015/02/08 17:18:14 by mgras            ###   ########.fr        #
+#    Updated: 2015/02/09 09:47:57 by mgras            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,6 +57,8 @@ NAME =		ft_ls
 COMPI =		gcc
 
 FLAGS =		-Wall -Werror -Wextra
+
+all : $(NAME)
 
 $(NAME) : o_comp c_comp
 

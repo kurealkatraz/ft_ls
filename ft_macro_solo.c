@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/03 16:52:24 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/08 16:18:14 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/09 10:54:21 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_dirs	*ft_solo_inst(t_dirs *dirs, t_op *ops, t_off *off)
 		ft_file_lsl(tmp->lsl, tmp->name);
 		tmp = tmp->next;
 	}
-	ft_fill_off_all(off, nins);
+	ft_fill_off_all(off, nins, ops);
 	ft_core_sorting(nins, ops);
 	return (nins);
 }

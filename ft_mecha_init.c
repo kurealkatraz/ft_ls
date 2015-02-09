@@ -6,7 +6,7 @@
 /*   By: mgras <mgras@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/01/07 13:40:54 by mgras             #+#    #+#             */
-/*   Updated: 2015/02/08 19:22:06 by mgras            ###   ########.fr       */
+/*   Updated: 2015/02/09 10:54:50 by mgras            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	ft_disp_files(t_op *ops, t_dirs *dirs, t_dirs *last)
 		if (off->link == 0)
 			ft_core_sorting(dirs, ops);
 		if (off->link == 0)
-			ft_fill_off_file(off, dirs);
+			ft_fill_off_file(off, dirs, ops);
 		if (dirs->file == 1 && ops->a == 1)
 			ft_print_file(ops, dirs->lsl, dirs, off);
 		else if (dirs->file == 1 && ft_hidden(dirs->name) == 0)
